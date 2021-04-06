@@ -45,12 +45,14 @@
 
 <script>
 import HelloWorld from './components/HelloWorld';
+import HelloWorld from './components/Login';
 
 export default {
   name: 'App',
 
   components: {
     HelloWorld,
+    Login,
   },
 
   data: () => ({

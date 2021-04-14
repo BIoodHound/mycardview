@@ -39,20 +39,24 @@
 
     <v-main>
       <HelloWorld/>
+      <Login/>
+      <Register/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-import HelloWorld from './components/Login';
+//import HelloWorld from './components/HelloWorld';
+import Login from './components/views/Login';
+import Register from './components/views/Register';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
-    Login,
+    //HelloWorld,
+    //Login,
+    Register,
   },
 
   data: () => ({

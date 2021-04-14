@@ -20,10 +20,38 @@
                 v-model='username'
                 id='username'
                 name='username'
-                label='Usename'
+                label='Nombre de usuario'
                 type='text'
                 required>
               </v-text-field>
+
+              <v-text-field
+                v-model='name'
+                id='name'
+                name='name'
+                label='Nombre'
+                type='text'
+                required>
+              </v-text-field>
+
+              <v-text-field
+                v-model='lastname'
+                id='lastname'
+                name='lastname'
+                label='Apellidos'
+                type='text'
+                required>
+              </v-text-field>
+
+                <v-text-field
+                v-model='email'
+                id='email'
+                name='email'
+                label='Email'
+                type='email'
+                required>
+                </v-text-field>
+              
 
               <v-text-field
                 v-model='password'
@@ -34,15 +62,13 @@
                 required>
               </v-text-field>
 
-
               <v-spacer></v-spacer>
 
 
               <v-card-actions>
                 <v-btn color='success'
-                @click="validate">Login</v-btn>
+                @click="validate">Register</v-btn>
               </v-card-actions>
-
 
             </v-form>
             <!-- login form -->
@@ -54,37 +80,3 @@
   </v-container>
     
 </template>
-
-<script>
-export default {
-    name: 'Login',
-    components:{
-
-    },
-    data: () => ({
-        valid: true,
-        username : '',
-        password : '',
-        
-        
-    }),
-    
-    methods:{
-        validate(){
-          console.log("hola")
-            if(this.$refs.form.validate()){
-                if(this.username == "admin" && this.password == "admin"){
-                    alert('Loguin correcto')
-                }else{
-                    alert('No es válido')
-                }
-            }
-        }
-    }
-
-}
-</script>
-
-<style>
-
-</style>

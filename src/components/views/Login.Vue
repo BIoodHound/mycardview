@@ -1,6 +1,5 @@
 <template>
-    
-   <v-container class="mx-auto my-15" >
+  <v-container class="mx-auto my-15">
     <v-layout justify-center>
       <v-flex xs12 sm8 md4>
         <!-- login view -->
@@ -10,40 +9,37 @@
           </v-toolbar>
           <v-card-text>
             <!-- login form -->
-            <v-form 
-            color="deep-purple accent-4"
-            ref="form"
-            v-model='valid'
-            lazy-validation>
-
+            <v-form
+              color="deep-purple accent-4"
+              ref="form"
+              v-model="valid"
+              lazy-validation
+            >
               <v-text-field
-                v-model='username'
-                id='username'
-                name='username'
-                label='Usename'
-                type='text'
-                required>
+                v-model="username"
+                id="username"
+                name="username"
+                label="Usename"
+                type="text"
+                required
+              >
               </v-text-field>
 
               <v-text-field
-                v-model='password'
-                id='password'
-                label='Password'
-                type='password'
-                counter=10
-                required>
+                v-model="password"
+                id="password"
+                label="Password"
+                type="password"
+                counter="10"
+                required
+              >
               </v-text-field>
-
 
               <v-spacer></v-spacer>
 
-
               <v-card-actions>
-                <v-btn color='success'
-                @click="validate">Login</v-btn>
+                <v-btn color="success" @click="validate">Login</v-btn>
               </v-card-actions>
-
-
             </v-form>
             <!-- login form -->
           </v-card-text>
@@ -52,39 +48,32 @@
       </v-flex>
     </v-layout>
   </v-container>
-    
 </template>
 
 <script>
 export default {
-    name: 'Login',
-    components:{
+  name: "Login",
+  components: {},
+  data: () => ({
+    valid: true,
+    username: "",
+    password: "",
+  }),
 
-    },
-    data: () => ({
-        valid: true,
-        username : '',
-        password : '',
-        
-        
-    }),
-    
-    methods:{
-        validate(){
-          console.log("hola")
-            if(this.$refs.form.validate()){
-                if(this.username == "admin" && this.password == "admin"){
-                    alert('Loguin correcto')
-                }else{
-                    alert('No es válido')
-                }
-            }
+  methods: {
+    validate() {
+      console.log("hola");
+      if (this.$refs.form.validate()) {
+        if (this.username == "admin" && this.password == "admin") {
+          alert("Loguin correcto");
+        } else {
+          alert("No es válido");
         }
-    }
-
-}
+      }
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>

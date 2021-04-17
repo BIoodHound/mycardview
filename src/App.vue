@@ -55,7 +55,7 @@ export default {
 
   components: {
     //HelloWorld,
-    //Login,
+    Login,
     Register,
   },
 

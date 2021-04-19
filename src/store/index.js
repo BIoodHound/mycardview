@@ -7,18 +7,56 @@ Vue.use(Vuex)
 const url = 'http://localhost:8080/';
 //to handle state
 const state = {
-  request: [],
+  user: {
+    username:'',
+    name:'',
+    lastName:'',
+    email:'',
+    password:''
+  },
   card: []
 }
 
 //to handle state
-const getters = {}
+const getters = {
+  getUser: state => {
+    return state.user;
+  },
+  getName: state => {
+    return state.user.name;
+  },
+  getUsername: state => {
+    return state.user.username;
+  },
+  getLastname: state => {
+    return state.user.lastName;
+  },
+  getEmail: state => {
+    return state.user.email;
+  },
+}
 
 //to handle actions
 const actions = {
-  getPosts({ commit }) {
+  //GET PARA PROBAR EL REGISTER, LUEGO CAMBIADLO POR EL getUserRegister
+  getTest({ commit }) {
+    const usuario = {
+      username:'AlexisAK',
+      name:'Alexis',
+      lastName:'Álvarez',
+      email:'alexis@gmail.com',
+      password:'testing'
+    }
+      commit('SET_USER', usuario)
+  },
+  getUserRegister({ commit }) {
     axios.post(url + 'api/register', commit).then(response => {
-      commit('SET_POSTS', response.data)
+      commit('SET_USER', response.data)
+    })
+  },
+  getUserLogin({ commit }) {
+    axios.post(url + 'api/login', commit).then(response => {
+      commit('SET_USER', response.data)
     })
   },
   getCard({ commit }) {
@@ -31,8 +69,8 @@ const actions = {
 
 //to handle mutations
 const mutations = {
-  SET_POSTS(state, request) {
-    state.request = request;
+  SET_USER(state, user) {
+    state.user = user;
   },
   GET_CARD(state, response) {
     state.card = response;

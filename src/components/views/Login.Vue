@@ -59,18 +59,25 @@ export default {
     username: "",
     password: "",
   }),
+computed:{
+    posts(){
+      return this.$store.state.posts
+    },
+    ...mapGetters(['getUser','getName', 'getUsername', 'getLastname','getEmail'])
+  },
+  mounted(){
 
+  },
   methods: {
     validate() {
-      console.log("hola");
       if (this.$refs.form.validate()) {
-        if (this.username == "admin" && this.password == "admin") {
-          alert("Loguin correcto");
-        } else {
-          alert("No es válido");
+        var req = {
+          username : this.username,
+          password : this.password
         }
+        this.$store.dispatch("getUserLogin", req);
       }
-    },
+    }
   },
 };
 </script>

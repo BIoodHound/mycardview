@@ -5,7 +5,7 @@
         <!-- login view -->
         <v-card>
           <v-toolbar dark flat>
-            <v-toolbar-title>Login Form</v-toolbar-title>
+            <v-toolbar-title>Register Form</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
             <!-- login form -->
@@ -77,9 +77,86 @@
         <!-- end login view -->
       </v-flex>
     </v-layout>
+
+    <br>
+      <div>
+          <h4>Probando resultado con los detalles del usuario por partes</h4>
+          <br>
+      </div>
+
+        <div>
+            <strong>Name:</strong>
+        </div>
+        <div>
+            {{getName}}
+        </div>
+
+      <div>
+        <div>
+            <strong>Apellidos:</strong>
+        </div>
+        <div>
+            {{getLastname}}
+        </div>
+      </div>
+      <div>
+        <div>
+            <strong>Nombre de usuario:</strong>
+        </div>
+        <div>
+            {{getUsername}}
+        </div>
+      </div>
+      <div>
+        <div>
+            <strong>Email:</strong>
+        </div>
+        <div>
+            {{getEmail}}
+        </div>
+      </div>
+  <br>
+
+  <div>
+    <h4>Probando resultado con el usuario al completo</h4>
+  </div>
+  <div>
+            <strong>Name:</strong>
+        </div>
+        <div>
+            {{getUser.name}}
+        </div>
+
+    <div>
+        <div>
+            <strong>Apellidos:</strong>
+        </div>
+        <div>
+            {{getUser.lastName}}
+        </div>
+    </div>
+    <div>
+        <div>
+            <strong>Nombre de usuario:</strong>
+        </div>
+        <div>
+            {{getUser.username}}
+        </div>
+    </div>
+    <div>
+        <div>
+            <strong>Email:</strong>
+        </div>
+        <div>
+            {{getUser.email}}
+        </div>
+    </div>
   </v-container>
 </template>
 <script>
+
+import{mapGetters} from 'vuex'
+
 export default {
   name: "Register",
   components: {},
@@ -94,7 +171,8 @@ export default {
   computed:{
     posts(){
       return this.$store.state.posts
-    }
+    },
+    ...mapGetters(['getUser','getName', 'getUsername', 'getLastname','getEmail'])
   },
   mounted(){
 
@@ -109,7 +187,7 @@ export default {
           email : this.email,
           password : this.password
         }
-        this.$store.dispatch("getPosts", req);
+        this.$store.dispatch("getUserLogin", req);
       }
     }
   },

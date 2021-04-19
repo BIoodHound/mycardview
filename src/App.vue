@@ -39,21 +39,24 @@
 
     <v-main>
       <!--<HelloWorld/>-->
-      <viewPanel/>
+      <!--<viewCard/>-->
+      <accountView/>
     </v-main>
   </v-app>
 </template>
 
 <script>
 //import HelloWorld from './components/HelloWorld';
-import viewPanel from './components/views/viewPanel';
+//import viewCard from './components/views/viewCard';
+import accountView from './components/views/accountView';
 
 export default {
   name: 'App',
 
   components: {
     //HelloWorld,
-    viewPanel,
+    //viewCard,
+    accountView,
   },
 
   data: () => ({

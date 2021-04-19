@@ -13,13 +13,13 @@
 
     <v-img
       height="250"
-      src="https://ep01.epimg.net/elpais/imagenes/2017/01/12/estilo/1484241837_708451_1484244419_noticia_normal_recorte1.jpg"
+      src="getImg"
     ></v-img>
 
-    <v-card-title>Rey Badílico</v-card-title>
+    <v-card-title>{{ getCardName }}</v-card-title>
 
     <v-card-text>
-      <div>Descripción se trae de la ddbb</div>
+      <div>{{ getInfo }}</div>
     </v-card-text>
 
     <div class="row justify-content-center mx-0">
@@ -27,7 +27,7 @@
         <v-card-title>Attack</v-card-title>
 
         <v-card-text>
-          <div id="ataque"><p class="attack">9</p></div>
+          <div id="ataque"><p class="attack">{{ getBuffo }}</p></div>
         </v-card-text>
       </div>
       
@@ -38,12 +38,39 @@
         <v-card-title>Life</v-card-title>
 
         <v-card-text>
-          <div id="vida"><p class="life">9</p></div>
+          <div id="vida"><p class="life">{{ getVida }}</p></div>
         </v-card-text>
       </div>
     </div> 
   </v-card>
 </template>
+
+<script>
+import{mapGetters} from 'vuex'
+
+export default {
+  name: "viewCard",
+  components: {},
+  data: () => ({
+    valid: true,
+    imagen: "",
+    nombre: "",
+    info: "",
+    buffo: "",
+    vida: "",
+  }),
+computed:{
+    posts(){
+      return this.$store.state.posts
+    },
+    ...mapGetters(['getBodyCard','getCardName', 'getInfo', 'getImg','getVida','getBuffo'])
+  },
+  mounted(){
+
+  },
+  methods: {},
+};
+</script>
 
 <style>
   #ataque {

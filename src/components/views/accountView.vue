@@ -1,5 +1,5 @@
 <template>
-    <div class="account">
+    <div class="account justify-content-center">
         <h1 class="title">Account</h1>
         <form action class="form">
             <label class="form-label" for="#name">Nombre</label>
@@ -57,9 +57,8 @@
     }
 
     .account {
+        margin: auto;
         width: 50%;
-        border-radius: 5px;
-        background-color: #f2f2f2;
         padding: 20px;
     }
 </style>

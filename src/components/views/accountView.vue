@@ -1,14 +1,14 @@
 <template>
     <div class="account justify-content-center">
         <h1 class="title">Account</h1>
-        <form action class="form">
-            <input v-model="username" class="form-input" type="hidden" id="username" value="">
+        <form action="" class="form" method="POST">
+            <input v-model="username" class="form-input" type="hidden" id="username" value="{{getUser.username}}">
             <label class="form-label" for="#name">Nombre</label>
-            <input v-model="name" class="form-input" type="text" id="name">
+            <input v-model="name" class="form-input" type="text" id="name" value="{{getUser.name}}">
             <label class="form-label" for="#apellido">Apellidos</label>
-            <input v-model="apellido" class="form-input" type="text" id="apellido">
+            <input v-model="apellido" class="form-input" type="text" id="apellido" value="{{getUser.lastName}}">
             <label class="form-label" for="#email">Email</label>
-            <input v-model="email" class="form-input" type="text" id="email">
+            <input v-model="email" class="form-input" type="text" id="email" value="{{getUser.email}}">
             <label class="form-label" for="#cambiar">Cambiar contraseña</label>
             <input v-model="password" class="form-input" type="text" id="password">
             <a href="">Cancelar</a>
@@ -18,7 +18,29 @@
 </template>
 
 <script>
+import{mapGetters} from 'vuex'
 
+export default {
+  name: "viewCard",
+  components: {},
+  data: () => ({
+    valid: true,
+    username: "",
+    name: "",
+    lastName: "",
+    email: "",
+  }),
+computed:{
+    posts(){
+      return this.$store.state.posts
+    },
+    ...mapGetters(['getUser'])
+  },
+  mounted(){
+
+  },
+  methods: {},
+};
 </script>
 
 <style>

@@ -2,6 +2,7 @@
     <div class="account justify-content-center">
         <h1 class="title">Account</h1>
         <form action class="form">
+            <input v-model="username" class="form-input" type="hidden" id="username" value="">
             <label class="form-label" for="#name">Nombre</label>
             <input v-model="name" class="form-input" type="text" id="name">
             <label class="form-label" for="#apellido">Apellidos</label>
@@ -10,11 +11,15 @@
             <input v-model="email" class="form-input" type="text" id="email">
             <label class="form-label" for="#cambiar">Cambiar contraseña</label>
             <input v-model="password" class="form-input" type="text" id="password">
-            <a href="" class="btn">Cancelar</a>
+            <a href="">Cancelar</a>
             <input class="form-submit" type="submit" value="Guardar">
         </form>
   </div>
 </template>
+
+<script>
+
+</script>
 
 <style>
     input[type=text] {
@@ -52,7 +57,7 @@
         display: inline-block;
     }
 
-    a:hover, a:active {
+    a:hover {
         background-color: #4548ee;
     }
 

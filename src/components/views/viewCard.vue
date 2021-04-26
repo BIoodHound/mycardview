@@ -13,13 +13,13 @@
 
     <v-img
       height="250"
-      src="getImg"
+      src="getBodyCard.imagen"
     ></v-img>
 
-    <v-card-title>{{ getCardName }}</v-card-title>
+    <v-card-title>{{getBodyCard.nombre}}</v-card-title>
 
     <v-card-text>
-      <div>{{ getInfo }}</div>
+      <div>{{getBodyCard.info}}</div>
     </v-card-text>
 
     <div class="row justify-content-center mx-0">
@@ -27,7 +27,7 @@
         <v-card-title>Attack</v-card-title>
 
         <v-card-text>
-          <div id="ataque"><p class="attack">{{ getBuffo }}</p></div>
+          <div id="ataque"><p class="attack">{{getBodyCard.buffo}}</p></div>
         </v-card-text>
       </div>
       
@@ -38,7 +38,7 @@
         <v-card-title>Life</v-card-title>
 
         <v-card-text>
-          <div id="vida"><p class="life">{{ getVida }}</p></div>
+          <div id="vida"><p class="life">{{getBodyCard.vida}}</p></div>
         </v-card-text>
       </div>
     </div> 
@@ -63,7 +63,7 @@ computed:{
     posts(){
       return this.$store.state.posts
     },
-    ...mapGetters(['getBodyCard','getCardName', 'getInfo', 'getImg','getVida','getBuffo'])
+    ...mapGetters(['getBodyCard'])
   },
   mounted(){
 

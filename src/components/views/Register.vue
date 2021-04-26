@@ -2,13 +2,11 @@
   <v-container class="mx-auto my-15">
     <v-layout justify-center>
       <v-flex xs12 sm8 md4>
-        <!-- login view -->
         <v-card>
           <v-toolbar dark flat>
             <v-toolbar-title>Register Form</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
-            <!-- login form -->
             <v-form
               color="deep-purple accent-4"
               ref="form"
@@ -71,10 +69,8 @@
                 <v-btn color="success" @click="validate">Register</v-btn>
               </v-card-actions>
             </v-form>
-            <!-- login form -->
           </v-card-text>
         </v-card>
-        <!-- end login view -->
       </v-flex>
     </v-layout>
   </v-container>

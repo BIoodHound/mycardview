@@ -2,7 +2,6 @@
   <v-app>
     <v-spacer></v-spacer>
     <v-main>
-      <!--<HelloWorld/>-->
       <viewCard/>
       <accountView/>
     </v-main>
@@ -10,17 +9,19 @@
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld';
 import viewCard from './components/views/viewCard';
 import accountView from './components/views/accountView';
+import Login from "./components/views/Login";
+import Register from "./components/views/Register";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-    //HelloWorld,
     viewCard,
     accountView,
+    Login,
+    Register,
   },
 
   data: () => ({

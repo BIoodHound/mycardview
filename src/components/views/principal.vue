@@ -6,11 +6,16 @@
                 <h1>Lista de bufos</h1><br><br><br><br><br><br><br><br><br>
 
                 <div id="aaa" class="subcontenedor1">
-                    <!--<a href="#">
-                        Niebla negra
-                        <img src="./imagenes/bufo1.png">
-                    </a>-->
-                    Niebla negra
+
+                    <li>
+                        <a href="#0">
+                        <span>Niebla Negra</span>
+                        <span>
+                            <i class="fas fa-address-card" aria-hidden="true"></i>
+                        </span>
+                        </a>
+                    </li>
+
                 </div>
 
                 <div class="subcontenedor2">
@@ -124,6 +129,82 @@ section .subcontenedor1 {
     margin-left: 40px;
     text-align: center;
 }
+
+
+
+
+
+
+.contenedor1 a {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.contenedor1 {
+  justify-content: center;
+}
+
+.contenedor1 a span:first-child {
+  display: inline-block;
+  padding: 10px;
+}
+ 
+.contenedor1 a span:last-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100%);
+}
+
+.contenedor1 a span {
+  transition: transform 0.2s ease-out;
+}
+ 
+.contenedor1 a:hover span:first-child {
+  transform: translateY(100%);
+}
+ 
+.contenedor1 a:hover span:last-child {
+  transform: none;
+}
+
+.contenedor1[data-animation="to-top"] a span:last-child {
+  transform: translateY(100%);
+}
+ 
+.contenedor1[data-animation="to-top"] a:hover span:first-child {
+  transform: translateY(-100%);
+}
+ 
+.contenedor1[data-animation="to-right"] a span:last-child {
+  transform: translateX(-100%);
+}
+ 
+.contenedor1[data-animation="to-right"] a:hover span:first-child {
+  transform: translateX(100%);
+}
+ 
+.contenedor1[data-animation="to-left"] a span:last-child {
+  transform: translateX(100%);
+}
+ 
+.contenedor1[data-animation="to-left"] a:hover span:first-child {
+  transform: translateX(-100%);
+}
+
+
+
+
+
+
+
+
 
 section .subcontenedor2 {
     flex: 25%;

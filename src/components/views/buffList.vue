@@ -1,8 +1,8 @@
 <template>
   <section>
-    <div class="contenedor1">
+    <div class="contenedor1"><!-- IZQUIERDA, TABLA BUFOS -->
 
-        <h1>Lista de bufos</h1><br>
+        <h1>Lista de bufos</h1><br><br><br><br><br><br><br><br><br>
 
         <div class="subcontenedor1">
             Niebla negra

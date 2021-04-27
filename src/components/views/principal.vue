@@ -1,106 +1,49 @@
 <template>
-        <section>
+<v-app>
+    <v-spacer></v-spacer>
+    <v-main>
+        <div class="container mx-auto">
+    
+      <div class="d-flex  align-items-center justify-content-around mb-3">
 
-            <div class="contenedor1"> <!-- IZQUIERDA, TABLA BUFOS -->
+        <div class="col-md-3">
+          <div class="row">
+            <buffList/>
+          </div>
+        </div>
 
-                <h1>Lista de bufos</h1><br><br><br><br><br><br><br><br><br>
+        <div class="col-md-5">
+          <div class="p-2 bg-info">
+            <viewCard/>
+          </div>
+        </div>
 
-                <div id="aaa" class="subcontenedor1">
+        <div class="col-md-3">
+          <div class="row buffoselegidos">
+            <h1>Aqui van los bufos elegidos</h1>
+          </div>
+        </div>
 
-                    <li>
-                        <a href="#0">
-                        <span>Niebla Negra</span>
-                        <span>
-                            <i class="fas fa-address-card" aria-hidden="true"></i>
-                        </span>
-                        </a>
-                    </li>
+      </div>
+    </div>
 
-                </div>
-
-                <div class="subcontenedor2">
-                    Barriles
-                </div>
-
-                <div class="subcontenedor1">
-                    Cerveza
-                </div>
-
-                <div class="subcontenedor4">
-                    Tsunami
-                </div>
-            </div>
-
-            <div class="contenedor"> <!-- MEDIO, CARTA --> 
-
-                <h1>Carta</h1><br>
-
-                <v-card
-                :loading="loading"
-                class="mx-auto my-12"
-                max-width="374"
-                >
-  
-                <template slot="progress">
-                <v-progress-linear
-                    height="10"
-                    indeterminate
-                ></v-progress-linear>
-                </template> 
-
-                <v-img
-                height="250"
-                src="https://ep01.epimg.net/elpais/imagenes/2017/01/12/estilo/1484241837_708451_1484244419_noticia_normal_recorte1.jpg"
-                ></v-img>
-
-                <v-card-title>Rey Badílico</v-card-title>
-
-                <v-card-text>
-                <div>Descripción se trae de la ddbb</div>
-                </v-card-text>
-
-                <div class="row justify-content-center mx-0">
-                <div class="col-4">
-                    <v-card-title>Attack</v-card-title> 
-
-                    <v-card-text>
-                    <div id="ataque"><p class="attack">9</p></div>
-                    </v-card-text>
-                </div>
-                
-                <div class="col-4">
-                </div>
-
-                <div class="col-4">
-                    <v-card-title>Life</v-card-title>
-
-                    <v-card-text>
-                    <div id="vida"><p class="life">9</p></div>
-                    </v-card-text>
-                </div>
-                </div> 
-                </v-card>
-            </div>
-
-            <div class="contenedor"> <!-- DERECHA -->
-                <div class="subcontenedor">
-                    
-                </div>
-
-                <div class="subcontenedor">
-                    
-                </div>
-
-                <div class="subcontenedor">
-                    
-                </div>
-
-                <div class="subcontenedor">
-                    
-                </div>
-            </div>
-        </section>
+            
+    </v-main>
+  </v-app>
 </template>
+
+<script>
+import viewCard from './viewCard';
+import buffList from './buffList';
+
+export default {
+  name: 'principal',
+  components: {
+    viewCard,
+    buffList
+  }
+}
+</script>
 
 
 <style>

@@ -1,112 +1,16 @@
 <template>
-  <section>
-    <div class="contenedor1"><!-- IZQUIERDA, TABLA BUFOS -->
-
-        <h1>Lista de bufos</h1><br><br><br><br><br><br><br><br><br>
-
-        <div class="subcontenedor1">
-            Niebla negra
-         </div>
-
-         <div class="subcontenedor2">
-            Barriles
-         </div>
-
-         <div class="subcontenedor1">
-            Cerveza
-         </div>
-
-         <div class="subcontenedor4">
-            Tsunami
-         </div>
+    <div>
+      <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" href="#" role="button" id="niebla">Niebla Negra</a>
+      <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" href="#" role="button">Barriles</a>
+      <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" href="#" role="button">Cerveza</a>
+      <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" href="#" role="button">Tsunami</a>
     </div>
-
-    <div class="contenedor">
-
-        <h1>Carta</h1><br>
-
-        <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-    </div>
-
-    <div class="contenedor">
-        <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-    </div>
-  </section>
 </template>
+<script>
 
-<style>
-  section {
-    display: flex;
+export default {
+  name: 'buffList',
+  components: {
+  }
 }
-
-h1{
-	text-decoration: underline;
-	text-align: center;
-}
-
-section .contenedor {
-    flex: 33%;
-}
-
-section .subcontenedor {
-    flex: 25%;
-}
-
-section .contenedor1 {
-    flex: 33%;
-    text-align: center;
-
-}
-
-section .subcontenedor1 {
-  flex: 25%;
- 	border: black 2px solid;
- 	width: 400px;
- 	margin-left: 40px;
-}
-
-section .subcontenedor2 {
-  flex: 25%;
- 	border-right: black 2px solid;
- 	border-left: black 2px solid;
- 	width: 400px;
- 	margin-left: 40px;
-}
-
-section .subcontenedor4 {
-  flex: 25%;
- 	border-right: black 2px solid;
- 	border-left: black 2px solid;
- 	border-bottom: black 2px solid;
- 	width: 400px;
- 	margin-left: 40px;
-}
-</style>
+</script>

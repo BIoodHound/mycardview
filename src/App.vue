@@ -2,29 +2,29 @@
   <v-app>
     <v-spacer></v-spacer>
     <v-main>
-      <Dashboard/>
+      <principal/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Dashboard from './components/views/Dashboard';
+//import Dashboard from './components/views/Dashboard';
 //import viewCard from './components/views/viewCard';
 //import accountView from './components/views/accountView';
 //import Login from "./components/views/Login";
 //import Register from "./components/views/Register";
-//import principal from './components/views/principal';
+import principal from './components/views/principal';
 
 export default {
   name: "App",
 
   components: {
-    Dashboard,
+    //Dashboard,
     //viewCard,
     //accountView,
     //Login,
     //Register,
-    //principal,
+    principal,
   },
 
   data: () => ({

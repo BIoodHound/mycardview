@@ -15,13 +15,13 @@
 
     <v-img
       height="250"
-      src="https://www.adobe.com/content/dam/cc/us/en/creativecloud/illustration-adobe-illustration/ink-drawing/desktop/inkdrawing_P1_900x420.jpg.img.jpg"
+      src="getBodyBuf.imagen"
     ></v-img>
 
-    <v-card-title>Niebla Negra</v-card-title>
+    <v-card-title>{{getBodyBuf.nombre}}</v-card-title>
 
     <v-card-text>
-      <div>Añade dos puntos de ataque</div>
+      <div>{{getBodyBuf.info}}</div>
     </v-card-text>
 
     <div class="row justify-content-center mx-0">
@@ -29,7 +29,7 @@
         <v-card-title>Attack</v-card-title>
 
         <v-card-text>
-          <div id="ataque"><p class="attack">2</p></div>
+          <div id="ataque"><p class="attack">{{getBodyBuf.buffo}}</p></div>
         </v-card-text>
       </div>
       
@@ -40,12 +40,40 @@
         <v-card-title>Life</v-card-title>
 
         <v-card-text>
-          <div id="vida"><p class="life">0</p></div>
+          <div id="vida"><p class="life">{{getBodyBuf.vida}}</p></div>
         </v-card-text>
       </div>
     </div> 
   </v-card>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  name: "bufo",
+  components: {},
+  data: () => ({
+    valid: true,
+    imagen: "",
+    nombre: "",
+    info: "",
+    buffo: "",
+    vida: "",
+  }),
+  computed:{
+    posts(){
+      return this.$store.state.posts
+    },
+    ...mapGetters(['getBodyBuf'])
+  },
+  mounted(){
+
+  },
+  methods: {},
+};
+</script>
+
 
 <style>
   #ataque {

@@ -1,66 +1,34 @@
 <template>
-  <section>
     <div class="contenedor1"><!-- IZQUIERDA, TABLA BUFOS -->
-
         <h1>Lista de bufos</h1><br><br><br><br><br><br><br><br><br>
-
         <div class="subcontenedor1">
-            Niebla negra
-         </div>
-
-         <div class="subcontenedor2">
-            Barriles
-         </div>
-
-         <div class="subcontenedor1">
-            Cerveza
-         </div>
-
-         <div class="subcontenedor4">
-            Tsunami
+            {{getBodyBufList.nombre}}
          </div>
     </div>
-
-    <div class="contenedor">
-
-        <h1>Carta</h1><br>
-
-        <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-    </div>
-
-    <div class="contenedor">
-        <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-
-         <div class="subcontenedor">
-            
-         </div>
-    </div>
-  </section>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  name: "buffList",
+  components: {},
+  data: () => ({
+    valid: true,
+    nombre: "",
+  }),
+  computed:{
+    posts(){
+      return this.$store.state.posts
+    },
+    ...mapGetters(['getBodyBufList'])
+  },
+  mounted(){
+
+  },
+  methods: {},
+};
+</script>
 
 <style>
   section {

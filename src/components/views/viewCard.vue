@@ -1,5 +1,3 @@
-
-
 <template>
   <v-card
     :loading="loading"
@@ -15,13 +13,13 @@
 
     <v-img
       height="250"
-      src="https://www.catadelvino.com/uploads/2010201411581493004o.jpg"
+      src="getBodyCard.imagen"
     ></v-img>
 
-    <v-card-title>Barriles</v-card-title>
+    <v-card-title>{{getBodyCard.nombre}}</v-card-title>
 
     <v-card-text>
-      <div>Esquivas el ataque del enemigo por completo</div>
+      <div>{{getBodyCard.info}}</div>
     </v-card-text>
 
     <div class="row justify-content-center mx-0">
@@ -29,7 +27,7 @@
         <v-card-title>Attack</v-card-title>
 
         <v-card-text>
-          <div id="ataque"><p class="attack">0</p></div>
+          <div id="ataque"><p class="attack">{{getBodyCard.buffo}}</p></div>
         </v-card-text>
       </div>
       
@@ -40,12 +38,37 @@
         <v-card-title>Life</v-card-title>
 
         <v-card-text>
-          <div id="vida"><p class="life">0</p></div>
+          <div id="vida"><p class="life">{{getBodyCard.vida}}</p></div>
         </v-card-text>
       </div>
     </div> 
   </v-card>
 </template>
+
+<script>
+import{mapGetters} from 'vuex'
+export default {
+  name: "viewCard",
+  components: {},
+  data: () => ({
+    valid: true,
+    imagen: "",
+    nombre: "",
+    info: "",
+    buffo: "",
+    vida: "",
+  }),
+computed:{
+    posts(){
+      return this.$store.state.posts
+    },
+    ...mapGetters(['getBodyCard'])
+  },
+  mounted(){
+  },
+  methods: {},
+};
+</script>
 
 <style>
   #ataque {

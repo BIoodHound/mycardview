@@ -20,6 +20,16 @@ const state = {
     info: '',
     buffo: '',
     vida: '',
+  },
+  buf: {
+    imagen: '',
+    nombre: '',
+    info: '',
+    buffo: '',
+    vida: '',
+  },
+  bufList: {
+    nombre: ''
   }
 }
 
@@ -30,6 +40,12 @@ const getters = {
   },
   getBodyCard: state => {
     return state.card;
+  },
+  getBodyBuf: state => {
+    return state.buf;
+  },
+  getBodyBufList: state => {
+    return state.bufList;
   },
 }
 
@@ -49,6 +65,16 @@ const actions = {
     axios.get(url + 'api/card/1').then(res => {
       commit('GET_CARD', res.data)
     })
+  },
+  getBuf({ commit }) {
+    axios.get(url + 'api/buf/1').then(res => {
+      commit('GET_BUFO', res.data)
+    })
+  },
+  getBufList({ commit }) {
+    axios.get(url + 'api/bufList/1').then(res => {
+      commit('GET_BUFLIST', res.data)
+    })
   }
 }
 
@@ -59,6 +85,12 @@ const mutations = {
   },
   GET_CARD(state, response) {
     state.card = response;
+  },
+  GET_BUF(state, response) {
+    state.buf = response;
+  },
+  GET_BUFLIST(state, response) {
+    state.bufList = response;
   }
 }
 

@@ -29,7 +29,7 @@ const state = {
     vida: '',
   },
   bufList: {
-    nombre: ''
+    name: ''
   }
 }
 

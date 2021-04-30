@@ -85,45 +85,6 @@ section .subcontenedor1 {
   transform: translateY(-100%);
 }
 
-.contenedor1 a span {
-  transition: transform 0.2s ease-out;
-}
- 
-.contenedor1 a:hover span:first-child {
-  transform: translateY(100%);
-}
- 
-.contenedor1 a:hover span:last-child {
-  transform: none;
-}
-
-.contenedor1[data-animation="to-top"] a span:last-child {
-  transform: translateY(100%);
-}
- 
-.contenedor1[data-animation="to-top"] a:hover span:first-child {
-  transform: translateY(-100%);
-}
- 
-.contenedor1[data-animation="to-right"] a span:last-child {
-  transform: translateX(-100%);
-}
- 
-.contenedor1[data-animation="to-right"] a:hover span:first-child {
-  transform: translateX(100%);
-}
- 
-.contenedor1[data-animation="to-left"] a span:last-child {
-  transform: translateX(100%);
-}
- 
-.contenedor1[data-animation="to-left"] a:hover span:first-child {
-  transform: translateX(-100%);
-}
-
-
-
-
 section .contenedor1 {
     flex: 33%;
     text-align: center;

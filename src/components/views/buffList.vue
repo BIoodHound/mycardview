@@ -1,9 +1,9 @@
 <template>
     <div class="contenedor1"><!-- IZQUIERDA, TABLA BUFOS -->
         <h1>Lista de bufos</h1><br><br><br><br><br><br><br><br><br>
-        <div class="subcontenedor1">
-            {{getBodyBufList.nombre}}
-         </div>
+        <div class="subcontenedor1" v-for="item in getBodyBufList" v-bind:key="item">
+          {{item.name}}
+        </div>
     </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   components: {},
   data: () => ({
     valid: true,
-    nombre: "",
+    name: "",
   }),
   computed:{
     posts(){

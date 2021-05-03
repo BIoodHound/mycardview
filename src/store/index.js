@@ -8,31 +8,30 @@ const url = 'http://localhost:8180/';
 //to handle state
 const state = {
   user: {
-    username:'',
-    name:'',
-    lastName:'',
-    email:'',
-    password:''
+    username: '',
+    name: '',
+    lastName: '',
+    email: '',
+    password: ''
   },
   idUser: null,
   card: {
-    imagen: '',
-    nombre: '',
-    info: '',
-    buffo: '',
-    vida: '',
+    image: '',
+    name: '',
+    buffs: '',
+    attack: '',
+    health: ''
   },
-
   buf: {
     imagen: '',
     nombre: '',
     info: '',
     buffo: '',
-    vida: '',
+    vida: ''
   },
   bufList: {
     name: '',
-    id: '',
+    id: ''
   }
 }
 
@@ -40,7 +39,7 @@ const state = {
 const getters = {
   getIdUser: state => {
     return state.idUser;
-  },
+   },
   getBodyCard: state => {
     return state.card;
   },
@@ -73,6 +72,11 @@ const actions = {
       commit('GET_CARD', res.data)
     })
   },
+  getUserDetails({ commit }) {
+    axios.get(url + 'api/user/1').then(res => {
+      commit('GET_USER', res.data)
+    })
+  },
   getBuf({ commit }) {
     axios.get(url + 'api/buf/1').then(res => {
       commit('GET_BUFO', res.data)
@@ -83,12 +87,11 @@ const actions = {
       commit('GET_BUFLIST', res.data)
     })
   },
-  getUserDetails({ commit }) {
-    axios.get(url + 'api/user/1').then(res => {
-      commit('GET_USER', res.data)
+  getEditUser({ commit }) {
+    axios.get(url + 'api/editAccount', commit).then(response => {
+      commit('SET_USER', response.data)
     })
-  },
-
+  }
 }
 
 //to handle mutations
@@ -99,15 +102,15 @@ const mutations = {
   GET_CARD(state, response) {
     state.card = response;
   },
+  GET_USER(state, response) {
+    state.user = response;
+  },
   GET_BUF(state, response) {
     state.buf = response;
   },
   GET_BUFLIST(state, response) {
     state.bufList = response;
-  },
-  GET_USER(state, response) {
-    state.user = response;
-  },
+  }
 }
 
 export default new Vuex.Store({

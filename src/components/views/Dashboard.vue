@@ -10,7 +10,6 @@
         <div class="col-md-6">
           <div class="row ml-16">
             <div>
-            
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button" @click="editCard">Editar carta</a>
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button">Luchar</a>
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button" @click="getUserDetails">Mi cuenta</a>
@@ -53,7 +52,7 @@ export default {
         this.$store.dispatch("getBufList");
         this.$router.push('principal')
     },
-     getUserDetails() {
+    getUserDetails() {
       this.$store.dispatch("getUserDetails");
       this.$router.push('cuenta')
     }

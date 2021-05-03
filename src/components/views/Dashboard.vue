@@ -13,7 +13,7 @@
             
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button" @click="editCard">Editar carta</a>
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button">Luchar</a>
-            <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button" @click="myAccount">Mi cuenta</a>
+            <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button" @click="getUserDetails">Mi cuenta</a>
             </div>
           </div>
           
@@ -24,7 +24,6 @@
             <viewCard/>
           </div>
         </div>
-        
       </div>
     </div>
     </v-main>
@@ -33,7 +32,7 @@
 
 <script>
 import viewCard from './viewCard';
-
+import{mapGetters} from 'vuex'
 export default {
   name: 'Dashboard',
   components: {
@@ -43,18 +42,19 @@ export default {
     posts(){
       return this.$store.state.posts
     },
-
+    ...mapGetters([{userId : 'getIdUser'}]),
     
   },
   mounted(){
-
+   
   },
   methods: {
     editCard() {
         this.$store.dispatch("getBufList");
         this.$router.push('principal')
     },
-    myAccount(){
+     getUserDetails() {
+      this.$store.dispatch("getUserDetails");
       this.$router.push('cuenta')
     }
   },

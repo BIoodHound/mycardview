@@ -43,6 +43,7 @@
           
         </v-card>
         <div class="text-center"><a @click="goToRegister">¿No tienes cuenta? Regístrate aquí</a></div>
+        <h1>{{userId}}</h1>
       </v-flex>
     </v-layout>
   </v-container>
@@ -56,16 +57,17 @@ export default {
   components: {},
   data: () => ({
     valid: true,
-    username: "",
-    password: "",
+    username : '',
+    password : ''
   }),
 computed:{
     posts(){
       return this.$store.state.posts
     },
-    ...mapGetters({
-      id: 'getIdUser'
-    }),
+    
+    ...mapGetters([{userId : 'getIdUser'}]),
+
+      
   },
   mounted(){
 
@@ -77,14 +79,17 @@ computed:{
           username : this.username,
           password : this.password
         }
-        console.log(req);
-        this.$store.dispatch("getUserLogin", req);
-        if(this.id>0){
-          console.log("Payaso");
-          this.$router.push('dashboard')
-        }else{
-          console.log("Error al loguearse");
-        }
+        this.$store.dispatch("getUserLogin", req)
+        this.$router.push('dashboard')
+        
+        
+        
+        // console.log();
+        // if(this.currentId){
+        //   this.$router.push('dashboard')
+        // }else{
+        //   console.log("Error al loguearse");
+        // }
         
       }
     },

@@ -14,9 +14,7 @@ const state = {
     email:'',
     password:''
   },
-  idUser:{
-    
-  },
+  idUser: null,
   card: {
     imagen: '',
     nombre: '',
@@ -51,6 +49,9 @@ const getters = {
   },
   getBodyBufList: state => {
     return state.bufList;
+  },
+  getUser: state => {
+    return state.user;
   }
 }
 
@@ -61,9 +62,9 @@ const actions = {
       commit('SET_USER', response.data)
     })
   },
-  getUserLogin({ commit }) {
-    console.log(commit);
-    axios.post(url + 'api/login', commit).then(response => {
+  getUserLogin({ commit }, req) {
+    axios.post(url + 'api/login', req).then(response => {
+      //console.log(response.data);
       commit('SET_USER', response.data)
     })
   },
@@ -81,14 +82,19 @@ const actions = {
     axios.get(url + 'api/buff').then(res => {
       commit('GET_BUFLIST', res.data)
     })
-  }
+  },
+  getUserDetails({ commit }) {
+    axios.get(url + 'api/user/1').then(res => {
+      commit('GET_USER', res.data)
+    })
+  },
 
 }
 
 //to handle mutations
 const mutations = {
   SET_USER(state, idUser) {
-    state.idUser = idUser;
+    state.idUser  = idUser;
   },
   GET_CARD(state, response) {
     state.card = response;
@@ -98,8 +104,10 @@ const mutations = {
   },
   GET_BUFLIST(state, response) {
     state.bufList = response;
-    console.log(response)
-  }
+  },
+  GET_USER(state, response) {
+    state.user = response;
+  },
 }
 
 export default new Vuex.Store({

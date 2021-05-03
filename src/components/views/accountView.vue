@@ -1,24 +1,60 @@
 <template>
     <div class="account justify-content-center">
         <h1 class="title">Account</h1>
-        <form action class="form">
-            <input v-model="username" class="form-input" type="hidden" id="username" value="">
-            <label class="form-label" for="#name">Nombre</label>
-            <input v-model="name" class="form-input" type="text" id="name">
-            <label class="form-label" for="#apellido">Apellidos</label>
-            <input v-model="apellido" class="form-input" type="text" id="apellido">
-            <label class="form-label" for="#email">Email</label>
-            <input v-model="email" class="form-input" type="text" id="email">
-            <label class="form-label" for="#cambiar">Cambiar contraseña</label>
-            <input v-model="password" class="form-input" type="text" id="password">
-            <a href="">Cancelar</a>
-            <input class="form-submit" type="submit" value="Guardar">
-        </form>
+        <div>
+            <form class="form" method="POST">
+                <input class="form-input" type="hidden" id="username" :value="getUser.username">
+                <label class="form-label" for="#name">Nombre</label>
+                <input class="form-input" type="text" id="name" :value="getUser.name">
+                <label class="form-label" for="#apellido">Apellidos</label>
+                <input class="form-input" type="text" id="lastName" :value="getUser.lastName">
+                <label class="form-label" for="#email">Email</label>
+                <input class="form-input" type="text" id="email" :value="getUser.email">
+                <label class="form-label" for="#cambiar">Cambiar contraseña</label>
+                <input class="form-input" type="text" id="password">
+                <a href="./Dashboard">Cancelar</a>
+                <input class="form-submit" type="submit" @click="editAccount" value="Guardar" >
+            </form>
+        </div>
+        
   </div>
 </template>
 
 <script>
-
+import{mapGetters} from 'vuex'
+export default {
+  name: "accountView",
+  components: {},
+  data: () => ({
+    username: "",
+    name: "",
+    lastName: "",
+    email: "",
+    password: ""
+  }),
+computed:{
+    posts(){
+      return this.$store.state.posts
+    },
+    ...mapGetters(['getUser'])
+  },
+  mounted(){
+  },
+  methods: {
+    editAccount() {
+      if (this.$refs.form.editAccount()) {
+        var req = {
+          username : this.username,
+          name : this.name,
+          lastName : this.lastName,
+          email : this.email,
+          password : this.password
+        }
+        this.$store.dispatch("getEditUser", req);
+      }
+    }
+  },
+};
 </script>
 
 <style>
@@ -31,7 +67,6 @@
         border-radius: 4px;
         box-sizing: border-box;
     }
-
     input[type=submit] {
         width: 100%;
         background-color: #2629e2;
@@ -42,11 +77,9 @@
         border-radius: 4px;
         cursor: pointer;
     }
-
     input[type=submit]:hover {
         background-color: #4548ee;
     }
-
     a:link, a:visited {
         width: 100%;
         background-color: #2629e2;
@@ -56,11 +89,9 @@
         text-decoration: none;
         display: inline-block;
     }
-
     a:hover {
         background-color: #4548ee;
     }
-
     .account {
         margin: auto;
         width: 50%;

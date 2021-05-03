@@ -40,15 +40,19 @@
               </v-card-actions>
             </v-form>
           </v-card-text>
+          
         </v-card>
+        <div class="text-center"><a @click="goToRegister">¿No tienes cuenta? Regístrate aquí</a></div>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+
+import{mapGetters} from 'vuex'
 export default {
-  name: "Login",
+  name: 'Login',
   components: {},
   data: () => ({
     valid: true,
@@ -59,7 +63,9 @@ computed:{
     posts(){
       return this.$store.state.posts
     },
-    ...mapGetters(['getUser','getName', 'getUsername', 'getLastname','getEmail'])
+    ...mapGetters({
+      id: 'getIdUser'
+    }),
   },
   mounted(){
 
@@ -71,8 +77,19 @@ computed:{
           username : this.username,
           password : this.password
         }
+        console.log(req);
         this.$store.dispatch("getUserLogin", req);
+        if(this.id>0){
+          console.log("Payaso");
+          this.$router.push('dashboard')
+        }else{
+          console.log("Error al loguearse");
+        }
+        
       }
+    },
+    goToRegister(){
+      this.$router.push('registro')
     }
   },
 };

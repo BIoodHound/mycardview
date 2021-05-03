@@ -2,7 +2,7 @@
   <v-app>
     <v-spacer></v-spacer>
     <v-main>
-      <principal/>
+    <router-view/>
     </v-main>
   </v-app>
 </template>
@@ -13,7 +13,7 @@
 //import accountView from './components/views/accountView';
 //import Login from "./components/views/Login";
 //import Register from "./components/views/Register";
-import principal from './components/views/principal';
+//import principal from './components/views/principal';
 
 export default {
   name: "App",
@@ -24,7 +24,7 @@ export default {
     //accountView,
     //Login,
     //Register,
-    principal,
+    //principal,
   },
 
   data: () => ({

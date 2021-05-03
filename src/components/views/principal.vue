@@ -19,8 +19,7 @@
         </div>
 
         <div class="col-md-3">
-          <div class="row buffoselegidos">
-            <h1>Aqui van los bufos elegidos</h1>
+          <div class="row" id="chooseBuffs">
           </div>
         </div>
 
@@ -35,170 +34,26 @@
 <script>
 import viewCard from './viewCard';
 import buffList from './buffList';
+import{mapGetters} from 'vuex'
 
 export default {
   name: 'principal',
   components: {
     viewCard,
     buffList
-  }
+  },
+  data: () => ({
+  }),
+  computed:{
+    posts(){
+      return this.$store.state.posts
+    },
+    ...mapGetters([''])
+  },
+  mounted(){
+  },
+  methods: {
+    
+  },
 }
 </script>
-
-
-<style>
-  section {
-    display: flex;
-}
-
-h1{
-	text-decoration: underline;
-	text-align: center;
-}
-
-section .contenedor {
-    flex: 33%;
-}
-
-section .subcontenedor {
-    flex: 25%;
-}
-
-section .subcontenedor1 {
-    flex: 25%;
-    border: black 2px solid;
-    width: 400px;
-    height: 40px;
-    margin-left: 40px;
-    text-align: center;
-}
-
-
-
-
-
-
-.contenedor1 a {
-  display: block;
-  position: relative;
-  overflow: hidden;
-}
-
-.contenedor1 {
-  justify-content: center;
-}
-
-.contenedor1 a span:first-child {
-  display: inline-block;
-  padding: 10px;
-}
- 
-.contenedor1 a span:last-child {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateY(-100%);
-}
-
-.contenedor1 a span {
-  transition: transform 0.2s ease-out;
-}
- 
-.contenedor1 a:hover span:first-child {
-  transform: translateY(100%);
-}
- 
-.contenedor1 a:hover span:last-child {
-  transform: none;
-}
-
-.contenedor1[data-animation="to-top"] a span:last-child {
-  transform: translateY(100%);
-}
- 
-.contenedor1[data-animation="to-top"] a:hover span:first-child {
-  transform: translateY(-100%);
-}
- 
-.contenedor1[data-animation="to-right"] a span:last-child {
-  transform: translateX(-100%);
-}
- 
-.contenedor1[data-animation="to-right"] a:hover span:first-child {
-  transform: translateX(100%);
-}
- 
-.contenedor1[data-animation="to-left"] a span:last-child {
-  transform: translateX(100%);
-}
- 
-.contenedor1[data-animation="to-left"] a:hover span:first-child {
-  transform: translateX(-100%);
-}
-
-
-
-
-
-
-
-
-
-section .subcontenedor2 {
-    flex: 25%;
-    border: black 2px solid;
-    width: 400px;
-    height: 40px;
-    margin-left: 40px;
-}
-
-section .subcontenedor4 {
-    flex: 25%;
-    border: black 2px solid;
-    width: 400px;
-    height: 40px;
-    margin-left: 40px;
-}
-
-section .contenedor1 {
-    flex: 33%;
-    text-align: center;
-
-}
-
-  #ataque {
-    background-color: rgba(255, 255, 0, 0.507);
-    color: black;
-    border-block-color: black;
-    border-radius: 1000px;
-    height: 50px;
-    width: 50px;
-  }
-  #vida {
-    background-color: rgba(255, 0, 0, 0.507);
-    color: black;
-    border-block-color: black;
-    border-radius: 0% 50% 50% 50%;
-    transform: rotate(45deg);
-    height: 50px;
-    width: 50px;
-  }
-  .life {
-    transform: rotate(-45deg);
-    padding: 15px;
-    padding-left: 21px;
-  }
-  .attack {
-    padding: 15px;
-    padding-left: 21px;
-  }
-  #tipo {
-    text-align: center;
-  }
-
-</style> 

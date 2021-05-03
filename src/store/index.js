@@ -47,8 +47,12 @@ const actions = {
   },
   getCard({ commit }) {
     axios.get(url + 'api/card/1').then(res => {
-      console.log(res.data)
       commit('GET_CARD', res.data)
+    })
+  },
+  getUserDetails({ commit }) {
+    axios.get(url + 'api/user/1').then(res => {
+      commit('GET_USER', res.data)
     })
   }
 
@@ -61,6 +65,9 @@ const mutations = {
   },
   GET_CARD(state, response) {
     state.card = response;
+  },
+  GET_USER(state, response) {
+    state.user = response;
   }
 }
 

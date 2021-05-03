@@ -39,8 +39,8 @@ computed:{
 
   },
   methods: {
-      getUser() {
-      this.$store.dispatch("getUserLogin");
+      getUserDetails() {
+      this.$store.dispatch("getUserDetails");
     }
   },
 };

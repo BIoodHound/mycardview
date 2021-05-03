@@ -59,7 +59,7 @@ computed:{
     posts(){
       return this.$store.state.posts
     },
-    ...mapGetters(['getUser','getName', 'getUsername', 'getLastname','getEmail'])
+    ...mapGetters(['getUser'])
   },
   mounted(){
 

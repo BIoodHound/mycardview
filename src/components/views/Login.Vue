@@ -73,18 +73,21 @@ computed:{
   methods: {
     validate() {
       if (this.$refs.form.validate()) {
-        var req = {
-          username : this.username,
-          password : this.password
-        }
-        console.log(req);
-        this.$store.dispatch("getUserLogin", req);
-        if(this.id>0){
-          console.log("Payaso");
-          this.$router.push('dashboard')
-        }else{
-          console.log("Error al loguearse");
-        }
+        this.$store.dispatch("getCard")
+        this.$router.push('dashboard')
+        // var req = {
+        //   username : this.username,
+        //   password : this.password
+        // }
+        // console.log(req);
+        // this.$store.dispatch("getUserLogin", req);
+        // if(this.id>0){
+        //   console.log("Payaso");
+        //   this.$store.dispatch("getCard")
+        //   this.$router.push('dashboard')
+        // }else{
+        //   console.log("Error al loguearse");
+        // }
         
       }
     },

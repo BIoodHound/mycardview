@@ -68,9 +68,6 @@ computed:{
 
   },
   methods: {
-    getCard() {
-      this.$store.dispatch("getCard");
-    }
   },
 };
 </script>

@@ -8,11 +8,11 @@ const url = 'http://localhost:8180/';
 //to handle state
 const state = {
   user: {
-    username:'',
-    name:'',
-    lastName:'',
-    email:'',
-    password:''
+    username: '',
+    name: '',
+    lastName: '',
+    email: '',
+    password: ''
   },
   idUser:{
     
@@ -24,17 +24,16 @@ const state = {
     attack: '',
     health: ''
   },
-
   buf: {
     imagen: '',
     nombre: '',
     info: '',
     buffo: '',
-    vida: '',
+    vida: ''
   },
   bufList: {
     name: '',
-    id: '',
+    id: ''
   }
 }
 
@@ -42,7 +41,7 @@ const state = {
 const getters = {
   getIdUser: state => {
     return state.idUser;
-  },
+   },
   getBodyCard: state => {
     return state.card;
   },
@@ -51,6 +50,9 @@ const getters = {
   },
   getBodyBufList: state => {
     return state.bufList;
+  },
+  getUser: state => {
+    return state.user;
   }
 }
 
@@ -61,9 +63,8 @@ const actions = {
       commit('SET_USER', response.data)
     })
   },
-  getUserLogin({ commit }) {
-    console.log(commit);
-    axios.post(url + 'api/login', commit).then(response => {
+  getUserLogin({ commit }, req) {
+    axios.post(url + 'api/login', req).then(response => {
       commit('SET_USER', response.data)
     })
   },
@@ -75,6 +76,7 @@ const actions = {
   getUserDetails({ commit }) {
     axios.get(url + 'api/user/1').then(res => {
       commit('GET_USER', res.data)
+    })
   },
   getBuf({ commit }) {
     axios.get(url + 'api/buf/1').then(res => {
@@ -85,8 +87,12 @@ const actions = {
     axios.get(url + 'api/buff').then(res => {
       commit('GET_BUFLIST', res.data)
     })
+  },
+  getEditUser({ commit }) {
+    axios.get(url + 'api/editAccount', commit).then(response => {
+      commit('SET_USER', response.data)
+    })
   }
-
 }
 
 //to handle mutations
@@ -105,7 +111,6 @@ const mutations = {
   },
   GET_BUFLIST(state, response) {
     state.bufList = response;
-    console.log(response)
   }
 }
 

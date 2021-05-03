@@ -1,7 +1,7 @@
 <template>
     <div class="account justify-content-center">
         <h1 class="title">Account</h1>
-        <form action="" class="form" method="POST">
+        <form class="form" method="POST">
             <input v-model="username" class="form-input" type="hidden" id="username" value="{{getUser.username}}">
             <label class="form-label" for="#name">Nombre</label>
             <input v-model="name" class="form-input" type="text" id="name" value="{{getUser.name}}">
@@ -21,14 +21,13 @@
 import{mapGetters} from 'vuex'
 
 export default {
-  name: "viewCard",
+  name: "accountView",
   components: {},
   data: () => ({
-    valid: true,
-    username: "",
-    name: "",
-    lastName: "",
-    email: "",
+    username: '',
+    name: '',
+    lastName: '',
+    email: '',
   }),
 computed:{
     posts(){
@@ -39,7 +38,11 @@ computed:{
   mounted(){
 
   },
-  methods: {},
+  methods: {
+      getUser() {
+      this.$store.dispatch("getUserLogin");
+    }
+  },
 };
 </script>
 

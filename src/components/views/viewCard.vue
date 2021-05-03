@@ -13,13 +13,13 @@
 
     <v-img
       height="250"
-      src="getBodyCard.imagen"
+      src="getBodyCard.image"
     ></v-img>
 
-    <v-card-title>{{getBodyCard.nombre}}</v-card-title>
+    <v-card-title>{{getBodyCard.name}}</v-card-title>
 
     <v-card-text>
-      <div>{{getBodyCard.info}}</div>
+      <div>{{getBodyCard.buffs}}</div>
     </v-card-text>
 
     <div class="row justify-content-center mx-0">
@@ -27,7 +27,7 @@
         <v-card-title>Attack</v-card-title>
 
         <v-card-text>
-          <div id="ataque"><p class="attack">{{getBodyCard.buffo}}</p></div>
+          <div id="ataque"><p class="attack">{{getBodyCard.attack}}</p></div>
         </v-card-text>
       </div>
       
@@ -38,7 +38,7 @@
         <v-card-title>Life</v-card-title>
 
         <v-card-text>
-          <div id="vida"><p class="life">{{getBodyCard.vida}}</p></div>
+          <div id="vida"><p class="life">{{getBodyCard.health}}</p></div>
         </v-card-text>
       </div>
     </div> 
@@ -52,12 +52,11 @@ export default {
   name: "viewCard",
   components: {},
   data: () => ({
-    valid: true,
-    imagen: "",
-    nombre: "",
-    info: "",
-    buffo: "",
-    vida: "",
+    image: '',
+    name: '',
+    buffs: '',
+    attack: '',
+    health: ''
   }),
 computed:{
     posts(){
@@ -68,7 +67,11 @@ computed:{
   mounted(){
 
   },
-  methods: {},
+  methods: {
+    getCard() {
+      this.$store.dispatch("getCard");
+    }
+  },
 };
 </script>
 

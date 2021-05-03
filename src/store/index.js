@@ -4,7 +4,7 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const url = 'http://localhost:8080/';
+const url = 'http://localhost:8180/';
 //to handle state
 const state = {
   user: {
@@ -15,11 +15,11 @@ const state = {
     password:''
   },
   card: {
-    imagen: '',
-    nombre: '',
-    info: '',
-    buffo: '',
-    vida: '',
+    image: '',
+    name: '',
+    buffs: '',
+    attack: '',
+    health: ''
   }
 }
 
@@ -47,6 +47,7 @@ const actions = {
   },
   getCard({ commit }) {
     axios.get(url + 'api/card/1').then(res => {
+      console.log(res.data)
       commit('GET_CARD', res.data)
     })
   }

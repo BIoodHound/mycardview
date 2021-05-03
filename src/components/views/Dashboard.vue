@@ -23,6 +23,7 @@
             <viewCard/>
           </div>
         </div>
+        
       </div>
     </div>
     </v-main>

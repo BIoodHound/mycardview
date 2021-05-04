@@ -13,6 +13,7 @@
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button" @click="editCard">Editar carta</a>
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button">Luchar</a>
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button" @click="getUserDetails">Mi cuenta</a>
+            <a class="mt-10 ml-15 btn border-danger btn-lg btn-block" role="button" @click="cerrarSession">Cerrar sesión</a>
             </div>
           </div>
           
@@ -50,12 +51,19 @@ export default {
   methods: {
     editCard() {
         this.$store.dispatch("getBufList");
-        this.$router.push('principal')
+        this.$router.push('principal');
     },
     getUserDetails() {
       this.$store.dispatch("getUserDetails");
-      this.$router.push('cuenta')
+      this.$router.push('cuenta');
+    },
+    cerrarSession() {
+      localStorage.removeItem("userId");
+      localStorage.removeItem("registerUser");
+      console.log(localStorage.getItem("userId"));
+      this.$router.push('/');
     }
+    
   },
 }
 </script>

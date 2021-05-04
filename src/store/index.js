@@ -18,7 +18,16 @@ const state = {
   card: {
     image: '',
     name: '',
-    buffs: '',
+    buffs: {
+      id: '',
+      name: '',
+      description: '',
+      hp_buff: '',
+      attack_buff: '',
+      windfury: '',
+      divineShield: '',
+      card: []
+    },
     attack: '',
     health: ''
   },
@@ -51,21 +60,27 @@ const getters = {
   },
   getUser: state => {
     return state.user;
+  },
+  getBuffAdd: state => {
+    return state.card.buffs;
   }
 }
 
 //to handle actions
 const actions = {
-  getUserRegister({ commit }) {
-    axios.post(url + 'api/register', commit).then(response => {
+  async getUserRegister({ commit }, req) {
+    return await axios.post(url + 'api/register', req).then(response => {
+      localStorage.setItem("registerUser", response.data);
       commit('SET_USER', response.data)
     })
   },
-  getUserLogin({ commit }, req) {
-    axios.post(url + 'api/login', req).then(response => {
-      //console.log(response.data);
+  async getUserLogin({ commit }, req) {
+    return await axios.post(url + 'api/login', req).then(response => {
+      console.log(response.data);
+      localStorage.setItem("userId", response.data);
       commit('SET_USER', response.data)
     })
+    .catch( error => { console.log(error); });
   },
   getCard({ commit }) {
     axios.get(url + 'api/card/1').then(res => {
@@ -91,6 +106,12 @@ const actions = {
     axios.get(url + 'api/editAccount', commit).then(response => {
       commit('SET_USER', response.data)
     })
+  },
+  getAddBuff({ commit }, req) {
+    console.log(req);
+    axios.post(url + 'api/card/addbuff', req).then(response => {
+      commit('SET_ADD_BUFF', response.data)
+    })
   }
 }
 
@@ -110,6 +131,9 @@ const mutations = {
   },
   GET_BUFLIST(state, response) {
     state.bufList = response;
+  },
+  SET_ADD_BUFF(state, response) {
+    state.card.buffs = response;
   }
 }
 

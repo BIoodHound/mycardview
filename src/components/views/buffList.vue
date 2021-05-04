@@ -28,6 +28,11 @@ export default {
   },
   methods: {
     chooseBuff : function(id, name) {
+      var req = {
+        userId : "1",
+        buffId : id
+      }
+      this.$store.dispatch("getAddBuff", req)
       console.log(name)
       const buffoChoose = document.createElement('a');
       buffoChoose.className = 'mt-10 ml-8 btn border-success text-success btn-lg btn-block';
@@ -38,9 +43,9 @@ export default {
       const buttonBuff = document.getElementById(id);
       buttonBuff.className = 'mt-10 ml-8 btn border-dark text-dark btn-lg btn-block disabled';
       document.getElementById(name).addEventListener("click", function(){
-        buttonBuff.className = 'mt-10 ml-8 btn border-primary text-primary btn-lg btn-block';
-        const buffRight = document.getElementById(name);
-        buffRight.remove();
+      buttonBuff.className = 'mt-10 ml-8 btn border-primary text-primary btn-lg btn-block';
+      const buffRight = document.getElementById(name);
+      buffRight.remove();
       },false);
 
     },

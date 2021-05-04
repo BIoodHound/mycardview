@@ -13,14 +13,12 @@
 
     <v-img
       height="250"
-      src="getBodyCard.image"
+      src="https://i2-prod.mirror.co.uk/incoming/article8150610.ece/ALTERNATES/s1200b/PAY-Angry-birds.jpg"
     ></v-img>
 
-    <v-card-title>{{getBodyCard.name}}</v-card-title>
+    <v-card-title class="justifiy-content-center">{{getBodyCard.name}}</v-card-title>
 
-    <v-card-text>
-      <div>{{getBodyCard.buffs}}</div>
-    </v-card-text>
+    
 
     <div class="row justify-content-center mx-0">
       <div class="col-4">

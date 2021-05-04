@@ -43,7 +43,6 @@
           
         </v-card>
         <div class="text-center"><a @click="goToRegister">¿No tienes cuenta? Regístrate aquí</a></div>
-        <h1>{{userId}}</h1>
       </v-flex>
     </v-layout>
   </v-container>
@@ -58,14 +57,14 @@ export default {
   data: () => ({
     valid: true,
     username : '',
-    password : ''
+    password : '',
   }),
 computed:{
     posts(){
       return this.$store.state.posts
     },
     
-    ...mapGetters([{userId : 'getIdUser'}]),
+    ...mapGetters(['getIdUser']),
 
       
   },
@@ -73,25 +72,31 @@ computed:{
 
   },
   methods: {
-    validate() {
+     validate() {
       if (this.$refs.form.validate()) {
         var req = {
           username : this.username,
           password : this.password
         }
-        this.$store.dispatch("getUserLogin", req)
-        this.$router.push('dashboard')
-        
-        
-        
-        // console.log();
-        // if(this.currentId){
-        //   this.$router.push('dashboard')
-        // }else{
-        //   console.log("Error al loguearse");
-        // }
-        
+        this.$store.dispatch("getUserLogin", req).then(() => {
+          console.log(localStorage.getItem("userId"));
+          if(localStorage.getItem("userId") != null){
+            //alert("Logueado Correctamente");
+            this.$store.dispatch("getCard");
+            this.$router.push('dashboard');
+            this.$swal('Correcto', 'Loguin correcto', 'success');
+          }else{
+            //alert("Error, datos incorrectos");
+            this.$swal('Error', 'Datos incorrectos', 'error');
+          }
+        }).catch(error=>{
+          console.log(error);
+          this.$swal('Error', 'Rellena todos los campos', 'error');
+        })
       }
+    },
+    test(){
+
     },
     goToRegister(){
       this.$router.push('registro')

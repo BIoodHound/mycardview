@@ -100,9 +100,6 @@ computed:{
         this.name = user.name;
         this.lastName = user.lastName;
         this.email = user.email;
-        //this.password = user.password;
-      // var x = JSON.parse(localStorage.getItem('userDetail'));
-      // console.log(x.username);
       } 
     },
     editAccount() {

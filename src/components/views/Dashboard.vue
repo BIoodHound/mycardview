@@ -14,10 +14,10 @@
         <div class="col-md-6">
           <div class="row ml-16">
             <div>
-            <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button" @click="editCard">Editar carta</a>
-            <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button">Luchar</a>
-            <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button" @click="getUserDetails">Mi cuenta</a>
-            <a class="mt-10 ml-15 btn border-danger btn-lg btn-block" role="button" @click="cerrarSession">Cerrar sesión</a>
+            <a class="mt-10 ml-15 btn border-primary btn-lg btn-block bg-white" role="button" @click="editCard">Editar carta</a>
+            <a class="mt-10 ml-15 btn border-primary btn-lg btn-block bg-white" role="button">Luchar</a>
+            <a class="mt-10 ml-15 btn border-primary btn-lg btn-block bg-white" role="button" @click="getUserDetails">Mi cuenta</a>
+            <a class="mt-10 ml-15 btn border-danger btn-lg btn-block bg-white" role="button" @click="cerrarSession">Cerrar sesión</a>
             </div>
           </div>
           

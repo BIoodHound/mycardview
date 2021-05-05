@@ -7,6 +7,7 @@
       <div class="d-flex  align-items-center justify-content-around mb-3">
 
         <div class="col-md-3">
+        <h4 class="text-center">Mejoras</h4>
           <div class="row">
             <h4>Mejoras</h4>
             <buffList/>
@@ -20,7 +21,7 @@
         </div>
 
         <div class="col-md-3">
-          <h4>Mejoras añadidas</h4>
+        <h4 class="text-center">Mejoras Elegidas</h4>
           <div class="row" id="chooseBuffs">
           </div>
         </div>

@@ -1,6 +1,5 @@
 <template>
   <v-card
-    :loading="loading"
     class="mx-auto my-12"
     max-width="374"
   >
@@ -16,17 +15,9 @@
       :src="getBodyCard.image"
     ></v-img>
 
-    <v-card-title>{{getBodyCard.name}}</v-card-title>
+    <v-card-title class="justifiy-content-center">{{getBodyCard.name}}</v-card-title>
 
-    <v-card-text>
-      <div>
-        <div  v-for="(value) in getBodyCard.buffs" :key="value.id">
-          <div>
-            {{ value.name }}
-          </div>
-        </div>
-      </div>
-    </v-card-text>
+    
 
     <div class="row justify-content-center mx-0">
       <div class="col-4">
@@ -53,7 +44,6 @@
 
 <script>
 import{mapGetters} from 'vuex'
-
 export default {
   name: "viewCard",
   components: {},
@@ -71,7 +61,6 @@ computed:{
     ...mapGetters(['getBodyCard'])
   },
   mounted(){
-
   },
   methods: {
   },
@@ -87,7 +76,6 @@ computed:{
     height: 50px;
     width: 50px;
   }
-
   #vida {
     background-color: rgba(255, 0, 0, 0.507);
     color: black;
@@ -97,18 +85,15 @@ computed:{
     height: 50px;
     width: 50px;
   }
-
   .life {
     transform: rotate(-45deg);
     padding: 15px;
     padding-left: 21px;
   }
-
   .attack {
     padding: 15px;
     padding-left: 21px;
   }
-
   #tipo {
     text-align: center;
   }

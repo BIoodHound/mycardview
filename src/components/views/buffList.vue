@@ -43,9 +43,9 @@ export default {
       const buttonBuff = document.getElementById(id);
       buttonBuff.className = 'mt-10 ml-8 btn border-dark text-dark btn-lg btn-block disabled';
       document.getElementById(name).addEventListener("click", function(){
-        buttonBuff.className = 'mt-10 ml-8 btn border-primary text-primary btn-lg btn-block';
-        const buffRight = document.getElementById(name);
-        buffRight.remove();
+      buttonBuff.className = 'mt-10 ml-8 btn border-primary text-primary btn-lg btn-block';
+      const buffRight = document.getElementById(name);
+      buffRight.remove();
       },false);
 
     },

@@ -13,6 +13,7 @@
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button" @click="editCard">Editar carta</a>
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button">Luchar</a>
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block" role="button" @click="getUserDetails">Mi cuenta</a>
+            <a class="mt-10 ml-15 btn border-danger btn-lg btn-block" role="button" @click="cerrarSession">Cerrar sesión</a>
             </div>
           </div>
           
@@ -23,7 +24,6 @@
             <viewCard/>
           </div>
         </div>
-        
       </div>
     </div>
     </v-main>
@@ -32,7 +32,7 @@
 
 <script>
 import viewCard from './viewCard';
-
+import{mapGetters} from 'vuex'
 export default {
   name: 'Dashboard',
   components: {
@@ -42,21 +42,35 @@ export default {
     posts(){
       return this.$store.state.posts
     },
-
+    ...mapGetters([{userId : 'getIdUser'}]),
     
   },
   mounted(){
-
+   
   },
   methods: {
     editCard() {
         this.$store.dispatch("getBufList");
-        this.$router.push('principal')
+        this.$router.push('principal');
     },
     getUserDetails() {
-      this.$store.dispatch("getUserDetails");
-      this.$router.push('cuenta')
+      this.$store.dispatch("getUserDetails", localStorage.getItem('userId')).then(() => {
+          if(localStorage.getItem("userDetail") != null){
+            this.$router.push('cuenta');
+          }else{
+            this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+          }
+        }).catch(error=>{
+          console.log(error);
+          this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+        })
+      
+    },
+    cerrarSession() {
+      localStorage.clear();
+      this.$router.push('/');
     }
+    
   },
 }
 </script>

@@ -56,40 +56,47 @@ export default {
   components: {},
   data: () => ({
     valid: true,
-    username: "",
-    password: "",
+    username : '',
+    password : '',
   }),
 computed:{
     posts(){
       return this.$store.state.posts
     },
-    ...mapGetters({
-      id: 'getIdUser'
-    }),
+    
+    ...mapGetters(['getIdUser']),
+
+      
   },
   mounted(){
 
   },
   methods: {
-    validate() {
+     validate() {
       if (this.$refs.form.validate()) {
-        this.$store.dispatch("getCard")
-        this.$router.push('dashboard')
-        // var req = {
-        //   username : this.username,
-        //   password : this.password
-        // }
-        // console.log(req);
-        // this.$store.dispatch("getUserLogin", req);
-        // if(this.id>0){
-        //   console.log("Payaso");
-        //   this.$store.dispatch("getCard")
-        //   this.$router.push('dashboard')
-        // }else{
-        //   console.log("Error al loguearse");
-        // }
-        
+        var req = {
+          username : this.username,
+          password : this.password
+        }
+        this.$store.dispatch("getUserLogin", req).then(() => {
+          console.log(localStorage.getItem("userId"));
+          if(localStorage.getItem("userId") != null){
+            //alert("Logueado Correctamente");
+            this.$store.dispatch("getCard", localStorage.getItem("userId"));
+            this.$router.push('dashboard');
+            this.$swal('Correcto', 'Loguin correcto', 'success');
+          }else{
+            //alert("Error, datos incorrectos");
+            this.$swal('Error', 'Datos incorrectos', 'error');
+          }
+        }).catch(error=>{
+          console.log(error);
+          this.$swal('Error', 'Rellena todos los campos', 'error');
+        })
       }
+    },
+    test(){
+
     },
     goToRegister(){
       this.$router.push('registro')

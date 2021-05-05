@@ -1,5 +1,9 @@
 <template>
-  <v-app>
+  <v-app style="
+    background-image: url(https://www.discordianos.com/uploads/monthly_2020_11/animated-gifs-of-fighting-game-backgrounds-43.gif.604b0391009c5c808d771a905a7c293e.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+">
     <v-spacer></v-spacer>
     <v-main>
     

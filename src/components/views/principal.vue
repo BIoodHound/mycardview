@@ -1,5 +1,9 @@
 <template>
-<v-app>
+<v-app style="
+    background-image: url(https://i.pinimg.com/originals/c3/f2/11/c3f211397c11b296344cf74fda828873.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+">
     <v-spacer></v-spacer>
     <v-main>
         <div class="container mx-auto">
@@ -9,7 +13,6 @@
         <div class="col-md-3">
         <h4 class="text-center">Mejoras</h4>
           <div class="row">
-            <h4>Mejoras</h4>
             <buffList/>
           </div>
         </div>
@@ -28,8 +31,6 @@
 
       </div>
     </div>
-
-            
     </v-main>
   </v-app>
 </template>

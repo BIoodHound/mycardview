@@ -12,8 +12,8 @@
                 <input class="form-input" type="text" id="email" :value="getUser.email">
                 <label class="form-label" for="#cambiar">Cambiar contraseña</label>
                 <input class="form-input" type="text" id="password">
-                <a href="./Dashboard">Cancelar</a>
-                <input class="form-submit" type="submit" @click="editAccount" value="Guardar" >
+                <v-btn @click="cancel">Cancelar</v-btn>
+                <v-btn color="success" @click="editAccount">Guardar</v-btn>
             </form>
         </div>
         
@@ -54,6 +54,10 @@ computed:{
         }
         this.$store.dispatch("getEditUser", req);
       }
+    },
+
+    cancel() {
+        this.$router.push('dashboard')
     }
   },
 };
@@ -68,35 +72,6 @@ computed:{
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
-    }
-
-    input[type=submit] {
-        width: 100%;
-        background-color: #2629e2;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    input[type=submit]:hover {
-        background-color: #4548ee;
-    }
-
-    a:link, a:visited {
-        width: 100%;
-        background-color: #2629e2;
-        color: white;
-        padding: 14px 25px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-    }
-
-    a:hover {
-        background-color: #4548ee;
     }
 
     .account {

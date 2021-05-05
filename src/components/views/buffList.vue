@@ -28,6 +28,11 @@ export default {
   },
   methods: {
     chooseBuff : function(id, name) {
+      var req = {
+        userId : "1",
+        buffId : id
+      }
+      this.$store.dispatch("getAddBuff", req)
       console.log(name)
       const buffoChoose = document.createElement('a');
       buffoChoose.className = 'mt-10 ml-8 btn border-success text-success btn-lg btn-block';

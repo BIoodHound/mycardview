@@ -13,13 +13,19 @@
 
     <v-img
       height="250"
-      src="getBodyCard.image"
+      :src="getBodyCard.image"
     ></v-img>
 
     <v-card-title>{{getBodyCard.name}}</v-card-title>
 
     <v-card-text>
-      <div>{{getBodyCard.buffs}}</div>
+      <div>
+        <div  v-for="(value) in getBodyCard.buffs" :key="value.id">
+          <div>
+            {{ value.name }}
+          </div>
+        </div>
+      </div>
     </v-card-text>
 
     <div class="row justify-content-center mx-0">

@@ -8,6 +8,7 @@
 
         <div class="col-md-3">
           <div class="row">
+            <h4>Mejoras</h4>
             <buffList/>
           </div>
         </div>
@@ -19,6 +20,7 @@
         </div>
 
         <div class="col-md-3">
+          <h4>Mejoras añadidas</h4>
           <div class="row" id="chooseBuffs">
           </div>
         </div>

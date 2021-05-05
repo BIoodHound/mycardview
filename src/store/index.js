@@ -14,13 +14,20 @@ const state = {
     email: '',
     password: ''
   },
-  idUser:{
-    
-  },
+  idUser: null,
   card: {
     image: '',
     name: '',
-    buffs: '',
+    buffs: {
+      id: '',
+      name: '',
+      description: '',
+      hp_buff: '',
+      attack_buff: '',
+      windfury: '',
+      divineShield: '',
+      card: []
+    },
     attack: '',
     health: ''
   },
@@ -53,6 +60,9 @@ const getters = {
   },
   getUser: state => {
     return state.user;
+  },
+  getBuffAdd: state => {
+    return state.card.buffs;
   }
 }
 
@@ -65,6 +75,7 @@ const actions = {
   },
   getUserLogin({ commit }, req) {
     axios.post(url + 'api/login', req).then(response => {
+      //console.log(response.data);
       commit('SET_USER', response.data)
     })
   },
@@ -92,13 +103,18 @@ const actions = {
     axios.get(url + 'api/editAccount', commit).then(response => {
       commit('SET_USER', response.data)
     })
+  },
+  getAddBuff({ commit }, req) {
+    axios.post(url + 'api/card/addbuff', req).then(response => {
+      commit('SET_ADD_BUFF', response.data)
+    })
   }
 }
 
 //to handle mutations
 const mutations = {
   SET_USER(state, idUser) {
-    state.idUser = idUser;
+    state.idUser  = idUser;
   },
   GET_CARD(state, response) {
     state.card = response;
@@ -111,6 +127,9 @@ const mutations = {
   },
   GET_BUFLIST(state, response) {
     state.bufList = response;
+  },
+  SET_ADD_BUFF(state, response) {
+    state.card.buffs = response;
   }
 }
 

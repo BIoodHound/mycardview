@@ -76,21 +76,22 @@ const actions = {
   },
   async getUserLogin({ commit }, req) {
     return await axios.post(url + 'api/login', req).then(response => {
-      console.log(response.data);
       localStorage.setItem("userId", response.data);
       commit('SET_USER', response.data)
     })
     .catch( error => { console.log(error); });
   },
-  getCard({ commit }) {
-    axios.get(url + 'api/card/1').then(res => {
+  getCard({ commit }, idUser) {
+    axios.get(url + 'api/card/' + idUser).then(res => {
+      localStorage.setItem('cardDetail', res.data);
       commit('GET_CARD', res.data)
     })
   },
-  getUserDetails({ commit }) {
-    axios.get(url + 'api/user/1').then(res => {
+  async getUserDetails({ commit }, idUser) {
+    return await axios.get(url + 'api/user/' + idUser).then(res => {
+      localStorage.setItem('userDetail', JSON.stringify(res.data));
       commit('GET_USER', res.data)
-    })
+    }).catch( error => { console.log(error); });
   },
   getBuf({ commit }) {
     axios.get(url + 'api/buf/1').then(res => {
@@ -102,10 +103,12 @@ const actions = {
       commit('GET_BUFLIST', res.data)
     })
   },
-  getEditUser({ commit }) {
-    axios.get(url + 'api/editAccount', commit).then(response => {
+  async getEditUser({ commit }, req) {
+    return await axios.post(url + 'api/editAccount/' + localStorage.getItem("userId"), req).then(response => {
+      //localStorage.setItem('userDetail', JSON.stringify(response.data));
+      localStorage.setItem('statusEdit', response.status);
       commit('SET_USER', response.data)
-    })
+    }).catch( error => { console.log(error); });
   },
   getAddBuff({ commit }, req) {
     console.log(req);

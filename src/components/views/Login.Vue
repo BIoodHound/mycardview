@@ -82,7 +82,7 @@ computed:{
           console.log(localStorage.getItem("userId"));
           if(localStorage.getItem("userId") != null){
             //alert("Logueado Correctamente");
-            this.$store.dispatch("getCard");
+            this.$store.dispatch("getCard", localStorage.getItem("userId"));
             this.$router.push('dashboard');
             this.$swal('Correcto', 'Loguin correcto', 'success');
           }else{

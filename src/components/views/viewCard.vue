@@ -1,6 +1,5 @@
 <template>
   <v-card
-    :loading="loading"
     class="mx-auto my-12"
     max-width="374"
   >
@@ -13,7 +12,7 @@
 
     <v-img
       height="250"
-      src="https://i2-prod.mirror.co.uk/incoming/article8150610.ece/ALTERNATES/s1200b/PAY-Angry-birds.jpg"
+      :src="getBodyCard.image"
     ></v-img>
 
     <v-card-title class="justifiy-content-center">{{getBodyCard.name}}</v-card-title>

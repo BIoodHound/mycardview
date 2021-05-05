@@ -54,13 +54,20 @@ export default {
         this.$router.push('principal');
     },
     getUserDetails() {
-      this.$store.dispatch("getUserDetails");
-      this.$router.push('cuenta');
+      this.$store.dispatch("getUserDetails", localStorage.getItem('userId')).then(() => {
+          if(localStorage.getItem("userDetail") != null){
+            this.$router.push('cuenta');
+          }else{
+            this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+          }
+        }).catch(error=>{
+          console.log(error);
+          this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+        })
+      
     },
     cerrarSession() {
-      localStorage.removeItem("userId");
-      localStorage.removeItem("registerUser");
-      console.log(localStorage.getItem("userId"));
+      localStorage.clear();
       this.$router.push('/');
     }
     

@@ -74,7 +74,7 @@ const actions = {
     return await axios.post(url + 'api/register', req).then(response => {
       localStorage.setItem("registerUser", response.data);
       commit('SET_USER', response.data)
-    })
+    }).catch( error => { console.log(error); });
   },
   async getUserLogin({ commit }, req) {
     return await axios.post(url + 'api/login', req).then(response => {
@@ -83,11 +83,11 @@ const actions = {
     })
     .catch( error => { console.log(error); });
   },
-  getCard({ commit }, idUser) {
-    axios.get(url + 'api/card/' + idUser).then(res => {
-      localStorage.setItem('cardDetail', res.data);
+  async getCard({ commit }, idUser) {
+    return await axios.get(url + 'api/card/' + idUser).then(res => {
+      localStorage.setItem('cardDetail', JSON.stringify(res.data));
       commit('GET_CARD', res.data)
-    })
+    }).catch( error => { console.log(error); });
   },
   async getUserDetails({ commit }, idUser) {
     return await axios.get(url + 'api/user/' + idUser).then(res => {
@@ -100,10 +100,11 @@ const actions = {
       commit('GET_BUFO', res.data)
     })
   },
-  getBufList({ commit }) {
-    axios.get(url + 'api/buff').then(res => {
+  async getBufList({ commit }) {
+    return await axios.get(url + 'api/buff').then(res => {
+      localStorage.setItem("BuffList", JSON.stringify(res.data));
       commit('GET_BUFLIST', res.data)
-    })
+    }).catch( error => { console.log(error); });
   },
   async getEditUser({ commit }, req) {
     return await axios.post(url + 'api/editAccount/' + localStorage.getItem("userId"), req).then(response => {
@@ -112,11 +113,18 @@ const actions = {
       commit('SET_USER', response.data)
     }).catch( error => { console.log(error); });
   },
-  getAddBuff({ commit }, req) {
+  async getAddBuff({ commit }, req) {
     console.log(req);
-    axios.post(url + 'api/card/addbuff', req).then(response => {
+    return await axios.post(url + 'api/card/addbuff', req).then(response => {
+      localStorage.setItem('statusAddBuff', response.status);
       commit('SET_ADD_BUFF', response.data)
-    })
+    }).catch( error => { console.log(error); });
+  },
+  async getRemoveBuff({ commit }, req) {
+    return await axios.post(url + 'api/card/removebuff', req).then(response => {
+      localStorage.setItem('statusRemoveBuff', response.status);
+      commit('SET_REMOVE_BUFF', response.data)
+    }).catch( error => { console.log(error); });
   }
 }
 
@@ -138,6 +146,9 @@ const mutations = {
     state.bufList = response;
   },
   SET_ADD_BUFF(state, response) {
+    state.card.buffs = response;
+  },
+  SET_REMOVE_BUFF(state, response) {
     state.card.buffs = response;
   }
 }

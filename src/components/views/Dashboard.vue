@@ -54,9 +54,17 @@ export default {
   },
   methods: {
     editCard() {
-        this.$store.dispatch("getBufList");
-        this.$store.dispatch("getBuf");
-        this.$router.push('principal');
+        this.$store.dispatch("getBufList").then(() => {
+          if(localStorage.getItem("BuffList") != null){
+            this.$router.push('principal');
+          }else{
+            this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+          }
+        }).catch(error=>{
+          console.log(error);
+          this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+        })
+        
     },
     getUserDetails() {
       this.$store.dispatch("getUserDetails", localStorage.getItem('userId')).then(() => {

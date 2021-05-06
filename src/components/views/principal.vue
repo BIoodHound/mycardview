@@ -18,7 +18,8 @@
         </div>
 
         <div class="col-md-5">
-          <div class="p-2 bg-info">
+          <div class="carta p-2 bg-info">
+            <buffo v-if="muestra"/>
             <viewCard/>
           </div>
         </div>
@@ -38,13 +39,15 @@
 <script>
 import viewCard from './viewCard';
 import buffList from './buffList';
+import buffo from './buffo';
 import{mapGetters} from 'vuex'
 
 export default {
   name: 'principal',
   components: {
     viewCard,
-    buffList
+    buffList,
+    buffo
   },
   data: () => ({
   }),
@@ -61,3 +64,6 @@ export default {
   },
 }
 </script>
+
+<style>
+</style>

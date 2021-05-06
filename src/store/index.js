@@ -32,11 +32,13 @@ const state = {
     health: ''
   },
   buf: {
-    imagen: '',
-    nombre: '',
-    info: '',
-    buffo: '',
-    vida: ''
+    image: '',
+    name: '',
+    description: '',
+    attack_buff: '',
+    hp_buff: '',
+    windfury: '',
+    divineShield: ''
   },
   bufList: {
     name: '',
@@ -94,7 +96,7 @@ const actions = {
     }).catch( error => { console.log(error); });
   },
   getBuf({ commit }) {
-    axios.get(url + 'api/buf/1').then(res => {
+    axios.get(url + 'api/buf/5').then(res => {
       commit('GET_BUFO', res.data)
     })
   },
@@ -112,11 +114,6 @@ const actions = {
   },
   getAddBuff({ commit }, req) {
     console.log(req);
-    axios.post(url + 'api/card/addbuff', req).then(response => {
-      commit('SET_ADD_BUFF', response.data)
-    })
-  },
-  getAddBuff({ commit }, req) {
     axios.post(url + 'api/card/addbuff', req).then(response => {
       commit('SET_ADD_BUFF', response.data)
     })

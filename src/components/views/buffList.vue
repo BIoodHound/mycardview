@@ -1,23 +1,26 @@
 <template>
-<div>
+  <div>
     <div  v-for="(value) in getBodyBufList" :key="value.id">
       <a class="mt-10 ml-8 btn border-primary btn-lg btn-block bg-white" :id="value.id"  @click="chooseBuff(value.id, value.name)">
       {{ value.name }}
       </a>
+      <a class="mt-10 ml-8 btn border-primary btn-lg btn-block bg-white" :id="value.id" @mouseover="muestra" @mouseleave="muestra">Vista</a>
     </div>
   </div>
 </template>
 <script>
-
 import{mapGetters} from 'vuex'
 export default {
   name: 'buffList',
   components: {
   },
-  data: () => ({
-    valid: true,
-    nombre: "",
-  }),
+  data () {
+    return {
+      valid: true,
+      nombre: "",
+      muestra: false
+    }
+  },
   computed:{
     posts(){
       return this.$store.state.posts
@@ -42,6 +45,7 @@ export default {
       
       const buttonBuff = document.getElementById(id);
       buttonBuff.className = 'mt-10 ml-8 btn border-dark text-dark btn-lg btn-block bg-white disabled';
+      
       document.getElementById(name).addEventListener("click", function(){
       buttonBuff.className = 'mt-10 ml-8 btn border-primary text-primary btn-lg btn-block bg-white';
       const buffRight = document.getElementById(name);
@@ -49,9 +53,12 @@ export default {
       },false);
 
     },
-
-  },
-
-
+    mouseover: function(){
+      this.muestra = !this.muestra;
+    },    
+    mouseleave: function(){
+      this.muestra = false
+    }
+  }
 }
 </script>

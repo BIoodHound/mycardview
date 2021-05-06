@@ -55,6 +55,7 @@ export default {
   methods: {
     editCard() {
         this.$store.dispatch("getBufList");
+        this.$store.dispatch("getBuf");
         this.$router.push('principal');
     },
     getUserDetails() {

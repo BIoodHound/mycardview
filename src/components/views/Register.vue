@@ -105,28 +105,30 @@ export default {
   methods: {
     validate() {
       if (this.$refs.form.validate()) {
-        var req = {
-          username : this.username,
-          name : this.name,
-          lastName : this.lastName,
-          email : this.email,
-          password : this.password
-        }
-        this.$store.dispatch("getUserRegister", req).then(() => {
-          console.log(localStorage.getItem("userId"));
-          if(localStorage.getItem("registerUser") != null){
-            //alert("Logueado Correctamente");
-            this.$store.dispatch("getCard");
-            this.$router.push('dashboard');
-            this.$swal('Correcto', 'Registro correcto', 'success');
-          }else{
-            //alert("Error, datos incorrectos");
-            this.$swal('Error', 'Datos incorrectos', 'error');
-          }
-        }).catch(error=>{
-          console.log(error);
+        if(this.username === "" ||  this.name === "" || this.lastName === "" || this.email === "" || this.password === ""){
           this.$swal('Error', 'Rellena todos los campos', 'error');
-        })
+        }else{
+          var req = {
+            username : this.username,
+            name : this.name,
+            lastName : this.lastName,
+            email : this.email,
+            password : this.password
+          }
+          this.$store.dispatch("getUserRegister", req).then(() => {
+            console.log(localStorage.getItem("userId"));
+            if(localStorage.getItem("registerUser") != null){
+              this.$store.dispatch("getCard");
+              this.$router.push('dashboard');
+              this.$swal('Correcto', 'Registro correcto', 'success');
+            }else{
+              this.$swal('Error', 'Nombre de usuario ya existente, elija otro', 'error');
+            }
+          }).catch(error=>{
+            console.log(error);
+            this.$swal('Error', 'Nombre de usuario ya existente, elija otro', 'error');
+          })
+        }
       }
     },
     goToLogin(){

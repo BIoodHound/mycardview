@@ -82,18 +82,18 @@ computed:{
           console.log(localStorage.getItem("userId"));
           if(localStorage.getItem("userId") != null){
             //alert("Logueado Correctamente");
-            this.$store.dispatch("getCard", localStorage.getItem("userId")).then(() => {
-          if(localStorage.getItem("cardDetail") != null){
-            this.$swal('Correcto', 'Loguin correcto', 'success');
-            this.$router.push('dashboard');
-          }else{
-            //alert("Error, datos incorrectos");
+          this.$store.dispatch("getCard", localStorage.getItem("userId")).then(() => {
+            if(localStorage.getItem("cardDetail") != null){
+              this.$swal('Correcto', 'Loguin correcto', 'success');
+              this.$router.push('dashboard');
+            }else{
+              //alert("Error, datos incorrectos");
+              this.$swal('Error', 'Error al editar la cuenta', 'error');
+            }
+          }).catch(error=>{
+            console.log(error);
             this.$swal('Error', 'Error al editar la cuenta', 'error');
-          }
-        }).catch(error=>{
-          console.log(error);
-          this.$swal('Error', 'Error al editar la cuenta', 'error');
-        })
+          })
 
 
 

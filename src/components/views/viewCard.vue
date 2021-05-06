@@ -89,14 +89,12 @@ computed:{
         
     },
     logicData(){
-      console.log("Tamo aqui");
       var card = JSON.parse(localStorage.getItem('cardDetail'));
       this.card = card;
       this.life = card.health;
       this.attack = card.attack;
       if(card.buffs.length > 0){
         this.buffsAttach = card.buffs;
-        console.log(card);
         for (var i= 0; i< card.buffs.length; i++) {
           this.attack += card.buffs[i].attack_buff; 
           this.life += card.buffs[i].hp_buff; 

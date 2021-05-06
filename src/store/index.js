@@ -117,6 +117,12 @@ const actions = {
       localStorage.setItem('statusAddBuff', response.status);
       commit('SET_ADD_BUFF', response.data)
     }).catch( error => { console.log(error); });
+  },
+  async getRemoveBuff({ commit }, req) {
+    return await axios.post(url + 'api/card/removebuff', req).then(response => {
+      localStorage.setItem('statusRemoveBuff', response.status);
+      commit('SET_REMOVE_BUFF', response.data)
+    }).catch( error => { console.log(error); });
   }
 }
 
@@ -138,6 +144,9 @@ const mutations = {
     state.bufList = response;
   },
   SET_ADD_BUFF(state, response) {
+    state.card.buffs = response;
+  },
+  SET_REMOVE_BUFF(state, response) {
     state.card.buffs = response;
   }
 }

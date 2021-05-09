@@ -11,27 +11,29 @@
       <div class="d-flex  align-items-center justify-content-around mb-3">
 
         <div class="col-md-3">
-        <h4 class="text-center text-white">Mejoras</h4>
+        <h4 class="text-center">Mejoras</h4>
           <div class="row">
             <buffList/>
           </div>
         </div>
 
         <div class="col-md-5">
-          <div class="carta p-2 bg-info">
-            <buffo v-if="muestra"/>
-            <viewCard/>
+          <div id="carta" class="p-2 bg-info">
+            <buffo class="activa"/>
+            <viewCard class="normal"/>
           </div>
         </div>
 
         <div class="col-md-3">
-        <h4 class="text-center text-white">Mejoras Elegidas</h4>
+        <h4 class="text-center">Mejoras Elegidas</h4>
           <div class="row" id="chooseBuffs">
           </div>
         </div>
 
       </div>
     </div>
+
+            
     </v-main>
   </v-app>
 </template>
@@ -41,7 +43,6 @@ import viewCard from './viewCard';
 import buffList from './buffList';
 import buffo from './buffo';
 import{mapGetters} from 'vuex'
-
 export default {
   name: 'principal',
   components: {
@@ -66,4 +67,7 @@ export default {
 </script>
 
 <style>
+.activa {
+  display: none;
+}
 </style>

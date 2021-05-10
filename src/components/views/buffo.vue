@@ -12,7 +12,7 @@
 
     <v-img
       height="250"
-      src="https://www.adobe.com/content/dam/cc/us/en/creativecloud/illustration-adobe-illustration/ink-drawing/desktop/inkdrawing_P1_900x420.jpg.img.jpg"
+      :src="getBodyBuf.image"
     ></v-img>
 
     <v-card-title>{{getBodyBuf.name}}</v-card-title>
@@ -78,8 +78,8 @@ computed:{
     color: black;
     border-block-color: black;
     border-radius: 1000px;
-    height: 50px;
-    width: 50px;
+    height: 52px;
+    width: 52px;
   }
   #vida {
     background-color: rgba(255, 0, 0, 0.507);
@@ -87,13 +87,13 @@ computed:{
     border-block-color: black;
     border-radius: 0% 50% 50% 50%;
     transform: rotate(45deg);
-    height: 50px;
-    width: 50px;
+    height: 55px;
+    width: 55px;
   }
   .life {
     transform: rotate(-45deg);
     padding: 15px;
-    padding-left: 21px;
+    padding-left: 19px;
   }
   .attack {
     padding: 15px;

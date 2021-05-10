@@ -1,5 +1,9 @@
 <template>
-  <v-app>
+  <v-app style="
+    background-image: url(https://i1.wp.com/www.marcelopedra.com.ar/blog/wp-content/uploads/2013/10/animated-gifs-of-fighting-game-backgrounds-50.gif?resize=800%2C336&ssl=1);
+    background-repeat: no-repeat;
+    background-size: cover;
+">
     <v-spacer></v-spacer>
     <v-main>
     <router-view/>

@@ -32,11 +32,13 @@ const state = {
     health: ''
   },
   buf: {
-    imagen: '',
-    nombre: '',
-    info: '',
-    buffo: '',
-    vida: ''
+    image: '',
+    name: '',
+    description: '',
+    attack_buff: '',
+    hp_buff: '',
+    windfury: '',
+    divineShield: ''
   },
   bufList: {
     name: '',
@@ -93,10 +95,11 @@ const actions = {
       commit('GET_USER', res.data)
     }).catch( error => { console.log(error); });
   },
-  getBuf({ commit }) {
-    axios.get(url + 'api/buf/1').then(res => {
-      commit('GET_BUFO', res.data)
-    })
+  async getBuf({ commit }, idBuff) {
+    return await axios.get(url + 'api/buff/' + idBuff).then(res => {
+      localStorage.setItem('buffoDetail', JSON.stringify(res.data));
+      commit('GET_BUF', res.data)
+    }).catch( error => { console.log(error); });
   },
   async getBufList({ commit }) {
     return await axios.get(url + 'api/buff').then(res => {

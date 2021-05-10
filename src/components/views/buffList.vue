@@ -1,15 +1,14 @@
 <template>
 <div>
     <div  v-for="(value) in buffs" :key="value.id">
-      <a class="mt-10 ml-8 btn border-primary btn-lg btn-block" :id="value.id"  @click="chooseBuff(value.id, value.name)">
+      <a class="mt-10 ml-8 btn border-primary btn-lg btn-block bg-white" :id="value.id"  @click="chooseBuff(value.id, value.name)">
       {{ value.name }}
       </a>
+      <a class="mt-1 ml-8 btn border-primary btn-lg btn-block bg-white rounded-circle" :id="value.id" @mouseover="showBuff(value.id)" @mouseleave="noBuff()">Vista</a>
     </div>
   </div>
 </template>
 <script>
-
-
 export default {
   name: 'buffList',
   components: {
@@ -18,10 +17,8 @@ export default {
     return {
       valid: true,
       buffs :{
-
       },
       card :{
-
       }
     }
   },
@@ -53,16 +50,16 @@ export default {
     },
     MarckBuff : function(id, name){
       const buffoChoose = document.createElement('a');
-      buffoChoose.className = 'mt-10 ml-8 btn border-success text-success btn-lg btn-block';
+      buffoChoose.className = 'mt-10 ml-8 btn border-success text-success btn-lg btn-block bg-white';
       buffoChoose.innerText = name;
       buffoChoose.id = name;
       document.getElementById("chooseBuffs").appendChild(buffoChoose);
       this.$nextTick(() => {            
         const buttonBuff = document.getElementById(id);
-        buttonBuff.className = 'mt-10 ml-8 btn border-dark text-dark btn-lg btn-block disabled';
+        buttonBuff.className = 'mt-10 ml-8 btn border-dark text-dark btn-lg btn-block disabled bg-white';
         document.getElementById(name).addEventListener("click", ()=>{
         this.removeBuff(id, name);
-        buttonBuff.className = 'mt-10 ml-8 btn border-primary text-primary btn-lg btn-block';
+        buttonBuff.className = 'mt-10 ml-8 btn border-primary text-primary btn-lg btn-block bg-white';
        },false);
       });
     },
@@ -121,9 +118,19 @@ export default {
         this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
       })
     },
-
+    showBuff : function(id) {
+      this.$store.dispatch("getBuf", id).then(() => {
+        var carta = document.getElementById("carta");
+        carta.getElementsByClassName("activa")[0].style.display = 'inherit';
+        carta.getElementsByClassName("normal")[0].style.display = 'none';
+        
+      })
+    },
+    noBuff : function() {
+      var carta = document.getElementById('carta');
+      carta.getElementsByClassName('normal')[0].style.display='inherit';
+      carta.getElementsByClassName('activa')[0].style.display='none';
+    }
   },
-
-
 }
 </script>

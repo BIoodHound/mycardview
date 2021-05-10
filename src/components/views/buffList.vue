@@ -26,7 +26,11 @@ export default {
   mounted(){
 
   },
-  methods: {},
+  methods: {
+    getCard() {
+      this.$store.dispatch("getBufList");
+    }
+  },
 };
 </script>
 

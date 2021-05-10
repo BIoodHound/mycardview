@@ -16,7 +16,7 @@
       src="getBodyCard.imagen"
     ></v-img>
 
-    <v-card-title>{{getBodyCard.nombre}}</v-card-title>
+    <v-card-title>{{getBodyCard.name}}</v-card-title>
 
     <v-card-text>
       <div>{{getBodyCard.info}}</div>
@@ -27,7 +27,7 @@
         <v-card-title>Attack</v-card-title>
 
         <v-card-text>
-          <div id="ataque"><p class="attack">{{getBodyCard.buffo}}</p></div>
+          <div id="ataque"><p class="attack">{{getBodyCard.attack}}</p></div>
         </v-card-text>
       </div>
       
@@ -38,7 +38,7 @@
         <v-card-title>Life</v-card-title>
 
         <v-card-text>
-          <div id="vida"><p class="life">{{getBodyCard.vida}}</p></div>
+          <div id="vida"><p class="life">{{getBodyCard.health}}</p></div>
         </v-card-text>
       </div>
     </div> 
@@ -66,7 +66,11 @@ computed:{
   },
   mounted(){
   },
-  methods: {},
+  methods: {
+    getCard() {
+      this.$store.dispatch("getCard");
+    }
+  },
 };
 </script>
 

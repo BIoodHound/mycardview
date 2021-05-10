@@ -15,18 +15,18 @@ const state = {
     password:''
   },
   card: {
-    imagen: '',
-    nombre: '',
+    image: '',
+    name: '',
     info: '',
-    buffo: '',
-    vida: '',
+    attack: '',
+    health: '',
   },
   buf: {
-    imagen: '',
-    nombre: '',
+    image: '',
+    name: '',
     info: '',
-    buffo: '',
-    vida: '',
+    attack: '',
+    health: '',
   },
   bufList: {
     name: ''

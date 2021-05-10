@@ -17,8 +17,6 @@
 
     <v-card-title class="justifiy-content-center">{{this.card.name}}</v-card-title>
 
-    
-
     <div class="row justify-content-center mx-0">
       <div class="col-4">
         <v-card-title>Attack</v-card-title>

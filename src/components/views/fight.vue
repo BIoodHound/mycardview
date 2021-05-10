@@ -1,18 +1,34 @@
 <template>
-    <v-app>
+<v-app style="
+    background-image: url(https://i.pinimg.com/originals/c3/f2/11/c3f211397c11b296344cf74fda828873.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+">
     <v-spacer></v-spacer>
-        <v-main>
-            <div class="contenedor1"> <!-- IZQUIERDA, CARTA -->
-                <viewCard/>
-            </div>
-            <div class="contenedor2"> <!-- MEDIO, CARTA --> 
-                <img class="media" src="/imagen/vs.PNG">
-            </div>
-            <div class="contenedor3"> <!-- DERECHA -->
-                
-            </div>
-        </v-main>
-    </v-app>
+    <v-main>
+        <div class="container mx-auto">
+    
+      <div class="d-flex  align-items-center justify-content-around mb-3">
+
+        <div class="col-md-4">
+            <viewCard/>
+        </div>
+
+        <div class="col-md-4">
+            <v-img
+            height="250"
+            src="./iamgen/vs.png"
+            ></v-img>
+        </div>
+
+        <div class="col-md-4">
+          <!-- CARTA ENEMIGA -->
+        </div>
+
+      </div>
+    </div>  
+    </v-main>
+  </v-app>
 </template>
 
 <script>

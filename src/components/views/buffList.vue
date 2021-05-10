@@ -1,84 +1,136 @@
 <template>
-    <div class="contenedor1"><!-- IZQUIERDA, TABLA BUFOS -->
-        <h1>Lista de bufos</h1><br><br><br><br><br><br><br><br><br>
-        <div class="subcontenedor1" v-for="item in getBodyBufList" v-bind:key="item">
-          {{item.name}}
-        </div>
+<div>
+    <div  v-for="(value) in buffs" :key="value.id">
+      <a class="mt-10 ml-8 btn border-primary btn-lg btn-block bg-white" :id="value.id"  @click="chooseBuff(value.id, value.name)">
+      {{ value.name }}
+      </a>
+      <a class="mt-1 ml-8 btn border-primary btn-lg btn-block bg-white rounded-circle" :id="value.id" @mouseover="showBuff(value.id)" @mouseleave="noBuff()">Vista</a>
     </div>
+  </div>
 </template>
-
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
-  name: "buffList",
-  components: {},
-  data: () => ({
-    valid: true,
-    name: "",
-  }),
+  name: 'buffList',
+  components: {
+  },
+  data () {
+    return {
+      valid: true,
+      buffs :{
+      },
+      card :{
+      }
+    }
+  },
   computed:{
     posts(){
       return this.$store.state.posts
     },
-    ...mapGetters(['getBodyBufList'])
   },
   mounted(){
-
+    this.getData();
+    this.checkBuffsSelected();
   },
   methods: {
-    getCard() {
-      this.$store.dispatch("getBufList");
+    checkBuffsSelected(){
+      if(localStorage.getItem('cardDetail') != null){
+        var card = JSON.parse(localStorage.getItem('cardDetail'));
+        this.card = card;
+        if(card.buffs.length > 0){
+          this.buffsAttach = card.buffs;
+          for (var i= 0; i< this.buffs.length; i++){
+            for (var j= 0; j< card.buffs.length; j++) {
+              if(this.buffs[i].id === card.buffs[j].id){
+                this.MarckBuff(this.buffs[i].id, this.buffs[i].name);
+              }
+            }
+          }
+        }
+      }
+    },
+    MarckBuff : function(id, name){
+      const buffoChoose = document.createElement('a');
+      buffoChoose.className = 'mt-10 ml-8 btn border-success text-success btn-lg btn-block bg-white';
+      buffoChoose.innerText = name;
+      buffoChoose.id = name;
+      document.getElementById("chooseBuffs").appendChild(buffoChoose);
+      this.$nextTick(() => {            
+        const buttonBuff = document.getElementById(id);
+        buttonBuff.className = 'mt-10 ml-8 btn border-dark text-dark btn-lg btn-block disabled bg-white';
+        document.getElementById(name).addEventListener("click", ()=>{
+        this.removeBuff(id, name);
+        buttonBuff.className = 'mt-10 ml-8 btn border-primary text-primary btn-lg btn-block bg-white';
+       },false);
+      });
+    },
+    removeBuff : function (id, name){
+      var req = {
+        userId : localStorage.getItem("userId"),
+        buffId : id
+      }
+      console.log(req);
+      this.$store.dispatch("getRemoveBuff", req).then(() => {
+        if(localStorage.getItem("statusRemoveBuff") != null && localStorage.getItem("statusRemoveBuff") == 200 ){
+          const buffRight = document.getElementById(name);
+          buffRight.remove();
+          this.updateCardData();
+        }else{
+          this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+        }
+      }).catch(error=>{
+        console.log(error);
+        this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+      })
+    },
+    getData(){
+      if(localStorage.getItem('BuffList') != null){
+        var buffList = JSON.parse(localStorage.getItem('BuffList'));
+        this.buffs = buffList;
+      }
+    },
+    updateCardData(){
+      this.$store.dispatch("getCard", localStorage.getItem("userId")).then(() => {
+          if(localStorage.getItem("cardDetail") != null){
+            this.$router.go();
+          }else{
+            this.$swal('Error', 'Error al cargar la carta', 'error');
+          }
+        }).catch(error=>{
+          console.log(error);
+          this.$swal('Error', 'Error al cargar la carta', 'error');
+      })
+    },
+    chooseBuff : function(id) {
+      var req = {
+        userId : localStorage.getItem("userId"),
+        buffId : id
+      }
+      console.log(req);
+      this.$store.dispatch("getAddBuff", req).then(() => {
+        if(localStorage.getItem("statusAddBuff") != null && localStorage.getItem("statusAddBuff") == 200 ){
+          this.updateCardData();
+          
+        }else{
+          this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+        }
+      }).catch(error=>{
+        console.log(error);
+        this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+      })
+    },
+    showBuff : function(id) {
+      this.$store.dispatch("getBuf", id).then(() => {
+        var carta = document.getElementById("carta");
+        carta.getElementsByClassName("activa")[0].style.display = 'inherit';
+        carta.getElementsByClassName("normal")[0].style.display = 'none';
+        
+      })
+    },
+    noBuff : function() {
+      var carta = document.getElementById('carta');
+      carta.getElementsByClassName('normal')[0].style.display='inherit';
+      carta.getElementsByClassName('activa')[0].style.display='none';
     }
   },
-};
+}
 </script>
-
-<style>
-  section {
-    display: flex;
-}
-
-h1{
-	text-decoration: underline;
-	text-align: center;
-}
-
-section .contenedor {
-    flex: 33%;
-}
-
-section .subcontenedor {
-    flex: 25%;
-}
-
-section .contenedor1 {
-    flex: 33%;
-    text-align: center;
-
-}
-
-section .subcontenedor1 {
-  flex: 25%;
- 	border: black 2px solid;
- 	width: 400px;
- 	margin-left: 40px;
-}
-
-section .subcontenedor2 {
-  flex: 25%;
- 	border-right: black 2px solid;
- 	border-left: black 2px solid;
- 	width: 400px;
- 	margin-left: 40px;
-}
-
-section .subcontenedor4 {
-  flex: 25%;
- 	border-right: black 2px solid;
- 	border-left: black 2px solid;
- 	border-bottom: black 2px solid;
- 	width: 400px;
- 	margin-left: 40px;
-}
-</style>

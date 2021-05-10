@@ -1,6 +1,5 @@
 <template>
   <v-card
-    :loading="loading"
     class="mx-auto my-12"
     max-width="374"
   >
@@ -13,21 +12,20 @@
 
     <v-img
       height="250"
-      src="getBodyCard.imagen"
+      :src="card.image"
     ></v-img>
 
-    <v-card-title>{{getBodyCard.name}}</v-card-title>
+    <v-card-title class="justifiy-content-center">{{this.card.name}}</v-card-title>
 
-    <v-card-text>
-      <div>{{getBodyCard.info}}</div>
-    </v-card-text>
+    
 
     <div class="row justify-content-center mx-0">
       <div class="col-4">
         <v-card-title>Attack</v-card-title>
 
         <v-card-text>
-          <div id="ataque"><p class="attack">{{getBodyCard.attack}}</p></div>
+          <div id="ataque"><p class="attack">{{this.attack}}</p></div>
+
         </v-card-text>
       </div>
       
@@ -38,7 +36,7 @@
         <v-card-title>Life</v-card-title>
 
         <v-card-text>
-          <div id="vida"><p class="life">{{getBodyCard.health}}</p></div>
+          <div id="vida"><p class="life">{{this.life}}</p></div>
         </v-card-text>
       </div>
     </div> 
@@ -50,14 +48,17 @@ import{mapGetters} from 'vuex'
 export default {
   name: "viewCard",
   components: {},
-  data: () => ({
-    valid: true,
-    imagen: "",
-    nombre: "",
-    info: "",
-    buffo: "",
-    vida: "",
-  }),
+  data () {
+    return {
+      valid: true,
+        card :{
+      },
+      buffsAttach: [
+      ],
+      life : 0,
+      attack : 0
+    }
+  },
 computed:{
     posts(){
       return this.$store.state.posts
@@ -65,10 +66,39 @@ computed:{
     ...mapGetters(['getBodyCard'])
   },
   mounted(){
+    this.getData();
   },
   methods: {
-    getCard() {
-      this.$store.dispatch("getCard");
+    getData(){
+        if(localStorage.getItem('cardDetail') != null && localStorage.getItem('statusAddBuff') == null ){
+          this.logicData();
+        }else if(localStorage.getItem('cardDetail') != null && localStorage.getItem('statusAddBuff') != null ){
+          this.$store.dispatch("getCard", localStorage.getItem("userId")).then(() => {
+          if(localStorage.getItem("cardDetail") != null){
+            this.logicData();
+          }else{
+            this.$swal('Error', 'Error en el servidor', 'error');
+          }
+        }).catch(error=>{
+          console.log(error);
+          this.$swal('Error', 'Error en el servidor', 'error');
+        })
+          
+        }
+        
+    },
+    logicData(){
+      var card = JSON.parse(localStorage.getItem('cardDetail'));
+      this.card = card;
+      this.life = card.health;
+      this.attack = card.attack;
+      if(card.buffs.length > 0){
+        this.buffsAttach = card.buffs;
+        for (var i= 0; i< card.buffs.length; i++) {
+          this.attack += card.buffs[i].attack_buff; 
+          this.life += card.buffs[i].hp_buff; 
+        }
+      }
     }
   },
 };
@@ -80,8 +110,8 @@ computed:{
     color: black;
     border-block-color: black;
     border-radius: 1000px;
-    height: 50px;
-    width: 50px;
+    height: 55px;
+    width: 55px;
   }
   #vida {
     background-color: rgba(255, 0, 0, 0.507);
@@ -89,13 +119,13 @@ computed:{
     border-block-color: black;
     border-radius: 0% 50% 50% 50%;
     transform: rotate(45deg);
-    height: 50px;
-    width: 50px;
+    height: 55px;
+    width: 55px;
   }
   .life {
     transform: rotate(-45deg);
     padding: 15px;
-    padding-left: 21px;
+    padding-left: 19px;
   }
   .attack {
     padding: 15px;

@@ -42,7 +42,7 @@
           </v-card-text>
           
         </v-card>
-        <div class="text-center"><a @click="goToRegister">¿No tienes cuenta? Regístrate aquí</a></div>
+        <div class="text-center text-white"><a @click="goToRegister">¿No tienes cuenta? Regístrate aquí</a></div>
       </v-flex>
     </v-layout>
   </v-container>

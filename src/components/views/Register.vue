@@ -71,7 +71,7 @@
             </v-form>
           </v-card-text>
         </v-card>
-        <div class="mt-5 text-center"><a @click="goToLogin">¿Ya tienes cuenta? Autentícate</a></div>
+        <div class="mt-5 text-center text-white"><a @click="goToLogin">¿Ya tienes cuenta? Autentícate</a></div>
       </v-flex>
     </v-layout>
   </v-container>

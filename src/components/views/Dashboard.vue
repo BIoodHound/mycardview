@@ -3,7 +3,7 @@
     background-image: url(https://www.discordianos.com/uploads/monthly_2020_11/animated-gifs-of-fighting-game-backgrounds-43.gif.604b0391009c5c808d771a905a7c293e.gif);
     background-repeat: no-repeat;
     background-size: cover;
-">
+  ">
     <v-spacer></v-spacer>
     <v-main>
     
@@ -15,7 +15,7 @@
           <div class="row ml-16">
             <div>
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block bg-white" role="button" @click="editCard">Editar carta</a>
-            <a class="mt-10 ml-15 btn border-primary btn-lg btn-block bg-white" role="button">Luchar</a>
+            <a class="mt-10 ml-15 btn border-primary btn-lg btn-block bg-white" role="button" @click="showEnemy">Luchar</a>
             <a class="mt-10 ml-15 btn border-primary btn-lg btn-block bg-white" role="button" @click="getUserDetails">Mi cuenta</a>
             <a class="mt-10 ml-15 btn border-danger btn-lg btn-block bg-white" role="button" @click="cerrarSession">Cerrar sesión</a>
             </div>
@@ -82,6 +82,18 @@ export default {
     cerrarSession() {
       localStorage.clear();
       this.$router.push('/');
+    },
+    showEnemy() {
+      this.$store.dispatch("getEnemyList").then(() => {
+        if (localStorage.getItem("EnemyList") != null) {
+          this.$router.push('prewar');
+        }else{
+            this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+          }
+        }).catch(error=>{
+          console.log(error);
+          this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+        })
     }
     
   },

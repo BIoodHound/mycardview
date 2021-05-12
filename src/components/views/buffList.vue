@@ -1,10 +1,10 @@
 <template>
 <div>
-    <div  v-for="(value) in buffs" :key="value.id">
-      <a class="mt-10 ml-8 btn border-primary btn-lg btn-block bg-white" :id="value.id"  @click="chooseBuff(value.id, value.name)">
+    <div v-for="(value) in buffs" :key="value.id">
+      <a class="mt-10 btn border-primary btn-lg btn-block bg-white" :id="value.id"  @click="chooseBuff(value.id, value.name)">
       {{ value.name }}
       </a>
-      <a class="mt-1 ml-8 btn border-primary btn-lg btn-block bg-white rounded-circle" :id="value.id" @mouseover="showBuff(value.id)" @mouseleave="noBuff()">Vista</a>
+      <a class="mt-1 btn border-primary btn-lg btn-block bg-white rounded-circle" :id="value.id" @mouseover="showBuff(value.id)" @mouseleave="noBuff()">Vista Previa</a>
     </div>
   </div>
 </template>

@@ -6,6 +6,8 @@ import Dashboard from "./components/views/Dashboard.vue";
 import accountView from "./components/views/accountView.vue";
 import Register from "./components/views/Register.vue";
 import principal from "./components/views/principal.vue";
+import prewar from "./components/views/prewar.vue";
+import fight from "./components/views/fight.vue";
 
 
 Vue.use(VueRouter)
@@ -36,6 +38,16 @@ const routes = [
         path: "/principal",
         name: "principal",
         component: principal
+    },
+    {
+        path: "/prewar",
+        name: "prewar",
+        component: prewar
+    },
+    {
+        path: "/fight",
+        name: "fight",
+        component: fight
     },
     
 ];

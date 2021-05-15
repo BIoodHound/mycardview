@@ -7,7 +7,7 @@
     <v-spacer></v-spacer>
     <v-main>
       <div class="container mx-auto">
-        <a href="./Dashboard" class="mt-1 ml-15 btn border-primary btn-lg btn-block bg-white" role="button">Atrás</a>
+        <a href="./Dashboard" class="mt-1 ml-15 btn border-primary btn-lg bg-white" role="button">Atrás</a>
       
         <div class="d-flex align-items-center justify-content-around mb-3">
           <div class="col-md-5">
@@ -84,7 +84,7 @@ export default {
         if (idEne != null) {
             this.$store.dispatch("getEnemy", idEne).then(() => {
                 if (localStorage.getItem('enemyDetail') != null) {
-                    this.$router.push('figth');
+                    this.$router.push('fight');
                 }else{
                     this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
                 }

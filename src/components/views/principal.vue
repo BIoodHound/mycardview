@@ -6,34 +6,33 @@
 ">
     <v-spacer></v-spacer>
     <v-main>
-        <div class="container mx-auto">
-    
-      <div class="d-flex  align-items-center justify-content-around mb-3">
+      <div class="container mx-auto">
+        <a href="./Dashboard" class="btn border-primary btn-lg btn-block bg-white" role="button">Atrás</a>
+      
+        <div class="d-flex  align-items-center justify-content-around mb-3">
 
-        <div class="col-md-3">
-        <h4 class="text-center text-white">Mejoras</h4>
-          <div class="row">
-            <buffList/>
+          <div class="col-md-3">
+          <h4 class="text-center text-white">Mejoras</h4>
+            <div class="row">
+              <buffList/>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-5">
-          <div id="carta" class="p-2 bg-info">
-            <buffo class="activa"/>
-            <viewCard class="normal"/>
+          <div class="col-md-5">
+            <div id="carta" class="p-2 bg-info">
+              <buffo class="activa"/>
+              <viewCard class="normal"/>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-3">
-        <h4 class="text-center text-white">Mejoras Elegidas</h4>
-          <div class="row" id="chooseBuffs">
+          <div class="col-md-3">
+          <h4 class="text-center text-white">Mejoras Elegidas</h4>
+            <div class="row" id="chooseBuffs">
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
-    </div>
-
-            
     </v-main>
   </v-app>
 </template>

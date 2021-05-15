@@ -43,6 +43,17 @@ const state = {
   bufList: {
     name: '',
     id: ''
+  },
+  enemy: {
+    name: '',
+    attack: '',
+    health: '',
+    image: '',
+    description: ''
+  },
+  enemyList: {
+    name: '',
+    id: ''
   }
 }
 
@@ -65,6 +76,12 @@ const getters = {
   },
   getBuffAdd: state => {
     return state.card.buffs;
+  },
+  getBodyEnemy: state => {
+    return state.enemy;
+  },
+  getBodyEnemyList: state => {
+    return state.enemyList;
   }
 }
 
@@ -126,6 +143,18 @@ const actions = {
       localStorage.setItem('statusRemoveBuff', response.status);
       commit('SET_REMOVE_BUFF', response.data)
     }).catch( error => { console.log(error); });
+  },
+  async getEnemy({ commit }, idEnemy) {
+    return await axios.get(url + 'api/enemy/' + idEnemy).then(res => {
+      localStorage.setItem('enemyDetail', JSON.stringify(res.data));
+      commit('GET_ENEMY', res.data)
+    }).catch( error => { console.log(error); });
+  },
+  async getEnemyList({ commit }) {
+    return await axios.get(url + 'api/enemy').then(res => {
+      localStorage.setItem('EnemyList', JSON.stringify(res.data));
+      commit('GET_ENEMYLIST', res.data)
+    }).catch( error => { console.log(error); });
   }
 }
 
@@ -151,6 +180,12 @@ const mutations = {
   },
   SET_REMOVE_BUFF(state, response) {
     state.card.buffs = response;
+  },
+  GET_ENEMY(state, response) {
+    state.enemy = response;
+  },
+  GET_ENEMYLIST(state, response) {
+    state.enemyList = response;
   }
 }
 

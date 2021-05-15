@@ -7,7 +7,7 @@
     <v-spacer></v-spacer>
     <v-main>
       <div class="container mx-auto">
-        <a href="./Dashboard" class="btn border-primary btn-lg btn-block bg-white" role="button">Atrás</a>
+        <a href="./Dashboard" class="btn border-primary btn-lg bg-white" role="button">Atrás</a>
       
         <div class="d-flex  align-items-center justify-content-around mb-3">
 

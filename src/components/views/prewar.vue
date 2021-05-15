@@ -7,7 +7,7 @@
     <v-spacer></v-spacer>
     <v-main>
       <div class="container mx-auto">
-        <a href="./Dashboard" class="mt-1 ml-15 btn border-primary btn-lg btn-block bg-white" role="button">Atrás</a>
+        <a href="./Dashboard" class="mt-1 ml-15 btn border-primary btn-lg bg-white mb-8" role="button">Atrás</a>
       
         <div class="d-flex align-items-center justify-content-around mb-3">
           <div class="col-md-5">
@@ -21,16 +21,21 @@
               <enemy class="ver"/>
             </div>
           </div>
-
+        </div>
+        <div class="row m-0 text-center align-items-center justify-content-center">
+          <div class="col-auto">
+            <h2 class="p-2 bg-secondary text-white">Elige un enemigo</h2>
+            <h5 class="p-1 bg-secondary text-black">Pasa el ratón sobre un enemigo para mostrarlo</h5>
+          </div>
         </div>
 
-          <div class="col-md-2 align-items-center justify-content-around">
-            <div v-for="(value) in enemies" :key="value.enemyId">
-                <a class="mt-10 ml-15 btn border-primary btn-lg btn-inline bg-white" :id="value.enemyId"  @click="chooseEnemy(value.enemyId)" @mouseover="showEnemy(value.enemyId)" @mouseleave="noEnemy()">
-                {{ value.name }}
-                </a>
-            </div>
+        <div class="mb-8 col-md-2 align-items-center justify-content-around">
+          <div v-for="(value) in enemies" :key="value.enemyId">
+              <a class="border border-dark border-0 mt-10 ml-15 btn btn-danger btn-lg btn-inline text-white" style="width: 150px !important;height: 52px !important;" :id="value.enemyId"  @click="chooseEnemy(value.enemyId)" @mouseover="showEnemy(value.enemyId)" @mouseleave="noEnemy()">
+              {{ value.name }}
+              </a>
           </div>
+        </div>
       </div>
     </v-main>
   </v-app>
@@ -39,7 +44,6 @@
 <script>
 import viewCard from './viewCard';
 import enemy from './enemy';
-
 export default {
   name: 'prewar',
   components: {
@@ -84,7 +88,7 @@ export default {
         if (idEne != null) {
             this.$store.dispatch("getEnemy", idEne).then(() => {
                 if (localStorage.getItem('enemyDetail') != null) {
-                    this.$router.push('figth');
+                    this.$router.push('fight');
                 }else{
                     this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
                 }

@@ -54,6 +54,9 @@ const state = {
   enemyList: {
     name: '',
     id: ''
+  },
+  resultCombat:{
+
   }
 }
 
@@ -82,6 +85,9 @@ const getters = {
   },
   getBodyEnemyList: state => {
     return state.enemyList;
+  },
+  getResultCombat : state => {
+    return state.resultCombat
   }
 }
 
@@ -155,6 +161,39 @@ const actions = {
       localStorage.setItem('EnemyList', JSON.stringify(res.data));
       commit('GET_ENEMYLIST', res.data)
     }).catch( error => { console.log(error); });
+  },
+  async getCombatResult({ commit }, req) {
+    return await axios.post(url + 'api/combat', req).then(response => {
+      localStorage.setItem('resultCombat', JSON.stringify(response.data));
+      commit('GET_RESULT_COMBAT', response.data)
+    }).catch( error => { console.log(error); });
+  },
+  async testCombat() {
+    var combate = {
+      result: "victory",
+      playerCard: {},
+      enemyCard: {},
+      combatLog:[
+        {
+          state: "player",
+          log: "Ha utilizado impacto certero"
+        },
+        {
+          state: "enemyCard",
+          log: "Se ha defendido con su escudo"
+        },
+        {
+          state: "player",
+          log: "Ha atacado vorazmente"
+        },
+        {
+          state: "enemyCard",
+          log: "Ha lanzado lluvia ácida"
+        }
+      ]
+    }
+    localStorage.setItem('testResultCombat', JSON.stringify(combate));
+    return await 200;
   }
 }
 
@@ -186,6 +225,9 @@ const mutations = {
   },
   GET_ENEMYLIST(state, response) {
     state.enemyList = response;
+  },
+  GET_RESULT_COMBAT(state, response) {
+    state.resultCombat = response;
   }
 }
 

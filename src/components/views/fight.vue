@@ -148,20 +148,31 @@ computed:{
             buttonFinish.className = 'mt-15 mb-10 btn btn-danger btn-lg text-white bg-danger disabled';
             buttonFinish.innerText = "LUCHA FINALIZADA"
             if(this.res.result === "Victory"){
-              this.$swal('¡¡HAS GANADO!!', '¡Eres un máquina!', 'success', {
-                button: "Continuar",
+              this.$swal.fire({
+                title: '¡¡HAS GANADO !!',
+                text: '¡Eres un máquina, sigue así!',
+                imageUrl: 'https://i.pinimg.com/originals/3e/08/9a/3e089a246769795d9d8a1810a155fa83.gif',
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
               })
               .then(() => {
                 this.$router.push('dashboard');
               });
 
             }else{
-                this.$swal('¡¡Has Perdido!! :((', 'Intentalo con otro enemigo o mejora tu carta', 'error', {
-                  button: "Continuar",
-                })
-                .then(() => {
+              this.$swal.fire({
+                title: '¡OH! Has perdido :(',
+                text: 'Inténtalo otra vez o mejora tu carta',
+                imageUrl: 'https://media.tenor.com/images/85584a1b677128233240d45d4a272310/tenor.gif',
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+              })
+              .then(() => {
                 this.$router.push('dashboard');
               });
+              
                 
             }  
         }                      

@@ -28,9 +28,9 @@
           </div>
         </div>
 
-        <div class="mb-8 col-md-2 align-items-center justify-content-around">
-          <div v-for="(value) in enemies" :key="value.enemyId">
-              <a class="border border-dark border-0 mt-10 ml-15 btn btn-danger btn-lg btn-inline text-white" style="width: 150px !important;height: 52px !important;" :id="value.enemyId"  @click="chooseEnemy(value.enemyId)" @mouseover="showEnemy(value.enemyId)" @mouseleave="noEnemy()">
+        <div class="row align-items-center justify-content-around btn-inline ">
+          <div v-for="(value) in enemies" :key="value.enemyId" class="col-1 btn-inline">
+              <a class="border border-dark border-0 mt-10 btn btn-danger btn-lg text-white" style="width: 170px !important;" :id="value.enemyId"  @click="chooseEnemy(value.enemyId)" @mouseover="showEnemy(value.enemyId)" @mouseleave="noEnemy()">
               {{ value.name }}
               </a>
           </div>

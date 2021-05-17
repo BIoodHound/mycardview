@@ -17,7 +17,9 @@
 
     <v-card-title class="justifiy-content-center">{{this.card.name}}</v-card-title>
 
-    
+    <v-card-text>
+      <div>{{this.description}}</div>
+    </v-card-text>
 
     <div class="row justify-content-center mx-0">
       <div class="col-4">
@@ -57,15 +59,16 @@ export default {
 
       ],
       life : 0,
-      attack : 0
+      attack : 0,
+      description: ""
     }
   },
-computed:{
-    posts(){
-      return this.$store.state.posts
+  computed:{
+      posts(){
+        return this.$store.state.posts
+      },
+      ...mapGetters(['getBodyCard'])
     },
-    ...mapGetters(['getBodyCard'])
-  },
   mounted(){
     this.getData();
   },
@@ -96,6 +99,7 @@ computed:{
       if(card.buffs.length > 0){
         this.buffsAttach = card.buffs;
         for (var i= 0; i< card.buffs.length; i++) {
+          this.description += " - " + card.buffs[i].name;
           this.attack += card.buffs[i].attack_buff; 
           this.life += card.buffs[i].hp_buff; 
         }

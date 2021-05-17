@@ -1,10 +1,10 @@
 <template>
-<div>
-    <div v-for="(value) in buffs" :key="value.id">
-      <a class="mt-10 btn border-primary btn-lg btn-block bg-white" :id="value.id"  @click="chooseBuff(value.id, value.name)">
+<div class="row">
+    <div class="row" v-for="(value) in buffs" :key="value.id">
+      <a class="mt-10 col-6 ml-8 btn border-primary btn-lg btn-block bg-white" :id="value.id"  @click="chooseBuff(value.id, value.name)">
       {{ value.name }}
       </a>
-      <a class="mt-1 btn border-primary btn-lg btn-block bg-white rounded-circle" :id="value.id" @mouseover="showBuff(value.id)" @mouseleave="noBuff()">Vista Previa</a>
+      <a class="mt-6 py-3 col-2 ml-8 btn btn-block border-primary bg-white btn-circle btn-lg" :id="value.id" @mouseover="showBuff(value.id)" @mouseleave="noBuff()">Vista Previa</a>
     </div>
   </div>
 </template>
@@ -56,10 +56,10 @@ export default {
       document.getElementById("chooseBuffs").appendChild(buffoChoose);
       this.$nextTick(() => {            
         const buttonBuff = document.getElementById(id);
-        buttonBuff.className = 'mt-10 ml-8 btn border-dark text-dark btn-lg btn-block disabled bg-white';
+        buttonBuff.className = 'mt-10 col-6 ml-8 btn border-dark text-dark btn-lg btn-block disabled bg-white';
         document.getElementById(name).addEventListener("click", ()=>{
         this.removeBuff(id, name);
-        buttonBuff.className = 'mt-10 ml-8 btn border-primary text-primary btn-lg btn-block bg-white';
+        buttonBuff.className = 'mt-10 col-6 ml-8 btn border-primary text-primary btn-lg btn-block bg-white';
        },false);
       });
     },
@@ -134,3 +134,25 @@ export default {
   },
 }
 </script>
+
+<style>
+  .btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  justify-content: center !important
+}
+.btn-circle.btn-lg {
+  width: 66px;
+  height: 63px;
+  padding: 12px 8px;
+  font-size: 15px;
+  line-height: 1.33;
+  border-radius: 53px;
+  justify-content: center !important
+}
+</style>

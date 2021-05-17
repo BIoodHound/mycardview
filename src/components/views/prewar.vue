@@ -25,7 +25,7 @@
         <div class="row m-0 text-center align-items-center justify-content-center">
           <div class="col-auto">
             <h2 class="p-2 bg-secondary text-white">Elige un enemigo</h2>
-            <h5 class="p-1 bg-secondary text-black">Pasa el ratón sobre un enemigo para mostrarlo</h5>
+            <!--<h5 class="p-1 bg-secondary text-black">Pasa el ratón sobre un enemigo para mostrarlo</h5>-->
           </div>
         </div>
 

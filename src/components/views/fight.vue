@@ -101,25 +101,6 @@ computed:{
         console.log(error);
         this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
       })
-
-      // this.$store.dispatch("testCombat").then(() => {
-      //   if(localStorage.getItem("testResultCombat") != null ){
-      //     console.log("en el combate");
-      //     const buttonEnemy = document.getElementById("buttonFight");
-      //     buttonEnemy.className = 'mt-15 mb-10 btn btn-danger btn-lg text-white bg-danger disabled';
-      //     buttonEnemy.innerText = "LUCHANDO..."
-      //     this.logicFight()
-      //     this.messageResult()
-      //   }else{
-      //     this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
-      //   }
-      // }).catch(error=>{
-      //   console.log(error);
-      //   this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
-      // })
-
-
-
     },
     logicFight (){
       var result =  JSON.parse(localStorage.getItem('resultCombat'));

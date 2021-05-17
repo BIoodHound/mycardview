@@ -108,6 +108,7 @@ export default {
       console.log(req);
       this.$store.dispatch("getAddBuff", req).then(() => {
         if(localStorage.getItem("statusAddBuff") != null && localStorage.getItem("statusAddBuff") == 200 ){
+          console.log("AÑADIDO");
           this.updateCardData();
           
         }else{

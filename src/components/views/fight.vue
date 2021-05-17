@@ -82,26 +82,12 @@ computed:{
   },
   methods: {
     fightStart(){
-      // var req = {
-      //   userId : localStorage.getItem("userId"),
-      //   enemyId : localStorage.getItem("enemyId")
-      // }
-      // this.$store.dispatch("getCombatResult", req).then(() => {
-      //   if(localStorage.getItem("resultCombat") != null ){
-      //     console.log("en el combate");
-      //     const buttonEnemy = document.getElementById("buttonFight");
-      //     buttonEnemy.className = 'mt-15 mb-10 btn btn-info btn-lg text-white disabled';
-      //     buttonEnemy.innerText = "LUCHANDO..."
-      //   }else{
-      //     this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
-      //   }
-      // }).catch(error=>{
-      //   console.log(error);
-      //   this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
-      // })
-
-      this.$store.dispatch("testCombat").then(() => {
-        if(localStorage.getItem("testResultCombat") != null ){
+      var req = {
+        userId : localStorage.getItem("userId"),
+        enemyId : localStorage.getItem("enemyId")
+      }
+      this.$store.dispatch("getCombatResult", req).then(() => {
+        if(localStorage.getItem("resultCombat") != null ){
           console.log("en el combate");
           const buttonEnemy = document.getElementById("buttonFight");
           buttonEnemy.className = 'mt-15 mb-10 btn btn-danger btn-lg text-white bg-danger disabled';
@@ -116,13 +102,29 @@ computed:{
         this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
       })
 
+      // this.$store.dispatch("testCombat").then(() => {
+      //   if(localStorage.getItem("testResultCombat") != null ){
+      //     console.log("en el combate");
+      //     const buttonEnemy = document.getElementById("buttonFight");
+      //     buttonEnemy.className = 'mt-15 mb-10 btn btn-danger btn-lg text-white bg-danger disabled';
+      //     buttonEnemy.innerText = "LUCHANDO..."
+      //     this.logicFight()
+      //     this.messageResult()
+      //   }else{
+      //     this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+      //   }
+      // }).catch(error=>{
+      //   console.log(error);
+      //   this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
+      // })
+
 
 
     },
     logicFight (){
-      var result =  JSON.parse(localStorage.getItem('testResultCombat'));
+      var result =  JSON.parse(localStorage.getItem('resultCombat'));
       this.res = result;
-      this.combatLog = result.combatLog;
+      this.combatLog = result.combatLogList;
       console.log(this.combatLog);
       var i = 0;
       var lengthLog = this.combatLog.length;
@@ -145,7 +147,7 @@ computed:{
             const buttonFinish = document.getElementById("buttonFight");
             buttonFinish.className = 'mt-15 mb-10 btn btn-danger btn-lg text-white bg-danger disabled';
             buttonFinish.innerText = "LUCHA FINALIZADA"
-            if(this.res.result === "victory"){
+            if(this.res.result === "Victory"){
               this.$swal('¡¡HAS GANADO!!', '¡Eres un máquina!', 'success', {
                 button: "Continuar",
               })

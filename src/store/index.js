@@ -163,37 +163,10 @@ const actions = {
     }).catch( error => { console.log(error); });
   },
   async getCombatResult({ commit }, req) {
-    return await axios.post(url + 'api/combat', req).then(response => {
+    return await axios.post(url + 'api/combat/', req).then(response => {
       localStorage.setItem('resultCombat', JSON.stringify(response.data));
       commit('GET_RESULT_COMBAT', response.data)
     }).catch( error => { console.log(error); });
-  },
-  async testCombat() {
-    var combate = {
-      result: "victory",
-      playerCard: {},
-      enemyCard: {},
-      combatLog:[
-        {
-          state: "player",
-          log: "Ha utilizado impacto certero"
-        },
-        {
-          state: "enemyCard",
-          log: "Se ha defendido con su escudo"
-        },
-        {
-          state: "player",
-          log: "Ha atacado vorazmente"
-        },
-        {
-          state: "enemyCard",
-          log: "Ha lanzado lluvia ácida"
-        }
-      ]
-    }
-    localStorage.setItem('testResultCombat', JSON.stringify(combate));
-    return await 200;
   }
 }
 

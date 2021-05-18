@@ -181,7 +181,7 @@ const actions = {
     }).catch( error => { console.log(error); });
   },
   async getStartedCards({ commit }) {
-    return await axios.get(url + 'api/enemy/').then(res => {
+    return await axios.get(url + 'api/starterCards').then(res => {
       localStorage.setItem('CardList', JSON.stringify(res.data));
       commit('GET_ALL_CARDS', res.data)
     }).catch( error => { console.log(error); });

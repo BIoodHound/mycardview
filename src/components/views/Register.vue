@@ -126,30 +126,24 @@ export default {
               this.$store.dispatch("getUserLogin", reqLogin).then(() => {
               console.log(localStorage.getItem("userId"));
               if(localStorage.getItem("userId") != null){
-                  //alert("Logueado Correctamente");
-                this.$store.dispatch("getCard", localStorage.getItem("userId")).then(() => {
-                  if(localStorage.getItem("cardDetail") != null){
-                    this.$swal('Correcto', 'Loguin correcto', 'success');
-                    this.$router.push('dashboard');
+                this.$store.dispatch("getStartedCards").then(() => {
+                  if(localStorage.getItem("CardList") != null){
+                    this.$swal('Registro correcto', 'Elige una carta', 'success');
+                    this.$router.push('chooseCard');
                   }else{
-                    //alert("Error, datos incorrectos");
-                    this.$swal('Error', 'Error al editar la cuenta', 'error');
+                    this.$swal('Error', 'Error en el servidor', 'error');
                   }
                 }).catch(error=>{
                   console.log(error);
-                  this.$swal('Error', 'Error al editar la cuenta', 'error');
+                  this.$swal('Error', 'Error en el servidor', 'error');
                 })           
             }else{
-              //alert("Error, datos incorrectos");
               this.$swal('Error', 'Datos incorrectos', 'error');
             }
         }).catch(error=>{
           console.log(error);
           this.$swal('Error', 'Rellena todos los campos', 'error');
         })
-
-
-
 
             }else{
               this.$swal('Error', 'Nombre de usuario ya existente, elija otro', 'error');

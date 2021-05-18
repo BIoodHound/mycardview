@@ -8,6 +8,7 @@ import Register from "./components/views/Register.vue";
 import principal from "./components/views/principal.vue";
 import prewar from "./components/views/prewar.vue";
 import fight from "./components/views/fight.vue";
+import chooseCard from "./components/views/chooseCard.vue";
 
 
 Vue.use(VueRouter)
@@ -48,6 +49,11 @@ const routes = [
         path: "/fight",
         name: "fight",
         component: fight
+    },
+    {
+        path: "/chooseCard",
+        name: "chooseCard",
+        component: chooseCard
     },
     
 ];

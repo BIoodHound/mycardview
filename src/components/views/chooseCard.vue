@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div v-for="(value) in cards" :key="value.cardId" class="col-1 btn-inline">
+        <div v-for="(value) in cards" :key="value.name" class="col-4 d-inline-block">
             <v-card
                 class="mx-auto my-12"
                 max-width="374" 
             >
                 <v-img
-                height="250"
+                height="400"
                 :src="value.image"
                 ></v-img>
 
@@ -34,7 +34,7 @@
                 </div>
                 </div> 
             </v-card>
-            <a class="border border-dark border-0 mt-10 btn btn-danger btn-lg text-white" style="width: 170px !important;" :id="value.cardId">
+            <a class="border border-dark border-0 ml-25 mt-10 btn btn-danger btn-lg text-white" style="width: 170px !important;margin-left: 205px !important;" :id="value.name" @click="chooseCard(value.name)">
               {{ value.name }}
             </a>
         </div>
@@ -70,10 +70,25 @@ export default {
     },
     chooseCard : function(id) {
         var idCard = id;
+        var req = {
+          userId : localStorage.getItem("userId"),
+          cardName : idCard
+        }
+        console.log(idCard);
         if (idCard != null) {
-            this.$store.dispatch("setMyCard", idCard).then(() => {
+            this.$store.dispatch("setMyCard", req).then(() => {
                 if (localStorage.getItem('myCardDetail') != null) {
-                    this.$router.push('Dashboard');
+                  this.$store.dispatch("getCard", localStorage.getItem("userId")).then(() => {
+                    if(localStorage.getItem("cardDetail") != null){
+                      this.$router.push('dashboard');
+                    }else{
+                      this.$swal('Error', 'Error al editar la cuenta', 'error');
+                    }
+                  }).catch(error=>{
+                    console.log(error);
+                    this.$swal('Error', 'Error al editar la cuenta', 'error');
+                  })
+                
                 }else{
                     this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
                 }

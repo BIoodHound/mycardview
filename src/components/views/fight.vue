@@ -101,7 +101,6 @@ computed:{
         console.log(error);
         this.$swal('Error', 'ERROR EN EL SERVIDOR', 'error');
       })
-
     },
     logicFight (){
       var result =  JSON.parse(localStorage.getItem('resultCombat'));

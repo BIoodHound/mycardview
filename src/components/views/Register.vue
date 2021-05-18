@@ -115,12 +115,42 @@ export default {
             email : this.email,
             password : this.password
           }
+
+          var reqLogin = {
+          username : this.username,
+          password : this.password
+          }
           this.$store.dispatch("getUserRegister", req).then(() => {
             console.log(localStorage.getItem("userId"));
             if(localStorage.getItem("registerUser") != null){
-              this.$store.dispatch("getCard");
-              this.$router.push('dashboard');
-              this.$swal('Correcto', 'Registro correcto', 'success');
+              this.$store.dispatch("getUserLogin", reqLogin).then(() => {
+              console.log(localStorage.getItem("userId"));
+              if(localStorage.getItem("userId") != null){
+                  //alert("Logueado Correctamente");
+                this.$store.dispatch("getCard", localStorage.getItem("userId")).then(() => {
+                  if(localStorage.getItem("cardDetail") != null){
+                    this.$swal('Correcto', 'Loguin correcto', 'success');
+                    this.$router.push('dashboard');
+                  }else{
+                    //alert("Error, datos incorrectos");
+                    this.$swal('Error', 'Error al editar la cuenta', 'error');
+                  }
+                }).catch(error=>{
+                  console.log(error);
+                  this.$swal('Error', 'Error al editar la cuenta', 'error');
+                })           
+            }else{
+              //alert("Error, datos incorrectos");
+              this.$swal('Error', 'Datos incorrectos', 'error');
+            }
+        }).catch(error=>{
+          console.log(error);
+          this.$swal('Error', 'Rellena todos los campos', 'error');
+        })
+
+
+
+
             }else{
               this.$swal('Error', 'Nombre de usuario ya existente, elija otro', 'error');
             }

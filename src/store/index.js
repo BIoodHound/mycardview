@@ -57,7 +57,10 @@ const state = {
   },
   resultCombat:{
 
-  }
+  },
+  cards: [
+
+  ]
 }
 
 //to handle state
@@ -87,7 +90,10 @@ const getters = {
     return state.enemyList;
   },
   getResultCombat : state => {
-    return state.resultCombat
+    return state.resultCombat;
+  },
+  getCards : state => {
+    return state.cards;
   }
 }
 
@@ -167,6 +173,18 @@ const actions = {
       localStorage.setItem('resultCombat', JSON.stringify(response.data));
       commit('GET_RESULT_COMBAT', response.data)
     }).catch( error => { console.log(error); });
+  },
+  async setMyCard({ commit }, req) {
+    return await axios.post(url + 'api/starterCards', req).then(response => {
+      localStorage.setItem('myCardDetail', JSON.stringify(response.data));
+      commit('SET_MY_CARD', response.data)
+    }).catch( error => { console.log(error); });
+  },
+  async getStartedCards({ commit }) {
+    return await axios.get(url + 'api/enemy/').then(res => {
+      localStorage.setItem('CardList', JSON.stringify(res.data));
+      commit('GET_ALL_CARDS', res.data)
+    }).catch( error => { console.log(error); });
   }
 }
 
@@ -201,6 +219,12 @@ const mutations = {
   },
   GET_RESULT_COMBAT(state, response) {
     state.resultCombat = response;
+  },
+  SET_MY_CARD(state, response) {
+    state.card = response;
+  },
+  GET_ALL_CARDS(state, response) {
+    state.cards = response;
   }
 }
 
